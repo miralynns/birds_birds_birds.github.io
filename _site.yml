@@ -1,0 +1,17 @@
+name: "Microbiome Hub"
+output_dir: "."
+navbar:
+  title: "Microbiome Hub"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Getting Started"
+      href: Getting_Started.html
+    - text: "Unix/Linux Cheat Sheet "
+      href: Unix_Linux_Cheat_Sheet.html
+    - text: "Data Download"
+      href: Data_Download.html
+    - text: "QIIME2"
+      href: QIIME2.html
+    - text: "Glossary"
+      href: Glossary.html
