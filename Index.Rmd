@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the Microbiome Hub at Boise State University"
+title: "Genomics Workflow"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
@@ -36,7 +36,7 @@ knitr::write_bib(.packages(), file = 'packages.bib')
 ```
 
 ```{r repo, echo=FALSE, fig.align = 'center', out.width = '100%'}
-knitr::include_graphics("Images/Microbiome_Hub.png")
+#knitr::include_graphics("Images/Microbiome_Hub.png")
 ```
 
 # Vision Statement
