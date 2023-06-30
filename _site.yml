@@ -1,17 +1,26 @@
-name: "Microbiome Hub"
+name: "Genomics Workflow"
 output_dir: "."
 navbar:
-  title: "Microbiome Hub"
+  title: "Genomics Workflow"
   left:
     - text: "Home"
       href: index.html
-    - text: "Getting Started"
+    - text: "Scan Raw Data"
       href: Getting_Started.html
-    - text: "Unix/Linux Cheat Sheet "
+    - text: "Trim Adaptors"
       href: Unix_Linux_Cheat_Sheet.html
-    - text: "Data Download"
+    - text: "Create Histogram"
       href: Data_Download.html
-    - text: "QIIME2"
+    - text: "Assemble with Various Data Types"
       href: QIIME2.html
-    - text: "Glossary"
+    - text: "Assembly Statistics"
       href: Glossary.html
+    - text: "Assess Completeness"
+      href: Glossary.html
+    - text: "Quality Assessment"
+      href: Glossary.html
+    - text: "Mask Repetitive Elements"
+      href: Glossary.html
+    - text: "Gene Prediction & Begin Annotation"
+      href: Glossary.html
+      
