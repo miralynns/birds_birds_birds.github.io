@@ -14,46 +14,43 @@ editor_options:
     wrap: sentence
 ---
 
-**16S Sequencing:** Sequencing the 16S subunit gene of ribosomal RNA (rRNA), which is useful for microbial identification. 
+**Amplicon Sequence Variant (ASV):** A unique sequence read, that is the result of a pipeline that corrects for quality and errors (i.e., denoises), which can be used as a proxy for a unique species 
 
-**18S Sequencing:** Sequencing the 18S subunit of ribosomal RNA (rRNA), which is useful for eukaryotic identification. The 18S subunit is a part of the small subunit of ribosomal DNA in eukaryotic cells (40S). 
+**Contig:** A continuous DNA sequence assembled from a series of short, overlapping sequences 
 
-**Alpha Diversity:** A metric that characterizes community structure as a form of richness (number of species) and evenness (relative abundance). In terms of microbial communities, this is often the community defined in a single sample. 
+**De Novo Assembly:** Constructing a novel genome assembly resulting in a reference genome; assembling a genome of a species without prior data of that species' genome to align or compare to 
 
-**Artifact (QIIME2):** An artifact is a standard file format for use in QIIME2, often denoted as a *.qza file (q=qiime, z=zipped, a=artifact) .
+**DNA Sequence:** The sequential order of nucleotides composing DNA
 
-**Amplicon Sequence Variant (ASV):** A unique sequence read, that is the result of a pipeline that corrects for quality and errors (i.e., denoises), which can be used as a proxy for a unique species.
+**Genome:** Complete genetic information of an organism
 
-**Beta Diversity:** A metric that measures the similarity or dissimilarity of microbial abundance between two samples. 
+**Genome Assembly:** A computational representation of a genome sequence built by aligning and merging DNA sequence fragments in order to mimic the original sequence 
 
-**Bray-Curtis Dissimilarity:** A beta diversity metric that measures the differences in microbial species abundance between two samples, with values ranging from 0 (both samples have the same microbs and abundance) to 1 (both samples are completely dissimilar).
+**K-mer:** All the possible nucleotide sequences of a certain length, ex. K=2 all the possible kmers are: AA AT AC AG TA TT TC TG CA CT CC CG GA GT GC GG
 
-**Feature (QIIME2):** A broad term, referring to a unit of observation using QIIME. When using QIIME2, this almost always is in regards to an amplicon sequence variant (ASV).
+**Next Generation Sequencing (NGS):** DNA sequencing technologies that produce millions or billions of short reads (25-500bp) quickly and efficiently.
 
-**Jaccard Distance:** A beta diversity metric that is based on the presence or absence of species (does not include abundance). This measures the difference in microbial composition between two samples on a scale from 0 (both samples share the same species) to 1 (samples have completely different species).
-
-**Metagenomics:** Sequences the entire genomes of all individuals in a bacterial sample. This is beneficial for understanding which bacteria are in a sample, and which genes are found in each species. Sometimes also referred to as ‘shotgun’ sequencing by the lab. 
+**Nx:** The largest contig size at which at least x% of bases are contained in contigs of least this length
+  ex. if N50 = 60 - at least half of the nucleotides in the assembly belongs to contigs with the N50 length of 60 nucleotides or longer
 
 **Operational Taxonomic Unit (OTU):** A taxonomic unit, derived from sequence clustering approaches. Traditionally, this has included data without denoising. 
 
-**Rarefaction:** An approach that adjusts for differences in read counts by subsampling reads in all individuals to a set number. For example, if rarefaction is set to 5000, all samples with reads >5000 will be randomly subsampled, with excess reads discarded. All individuals with <5000 reads will not be included in analyses. In doing so, this helps correct for biases in downstream alpha diversity estimates (Willis 2019). 
+**Ortholog:** A homologous gene found in different species that can be traced back to a common ancestral genome 
 
-**Shannon Diversity Index:** Also known as a Shannon-Wiener index, or Shannon entropy. An alpha diversity index that takes account species richness, evenness, and abundance. This index is more strongly influenced by species richness and rare species. The higher the value, the higher the diversity. 
+**Reference Genome:** A fully sequenced, assembled, and preferrably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or "reference"; the product of de novo assembly 
 
-**Shannon Evenness Index (Shannon's equitability index):** An alpha diversity index, independent of species richness. It measures how evenly the microbes are distributed in a sample without considering the number of species. Values can range from zero to one: from high dominance of a single species to perfectly equal abundances across all species.
+**Resequence:** Sequencing the genome of an individual of a certain species where a reference genome exists; sequences are aligned to the reference genome for assembly
 
-**Simpson’s Diversity Index:** A diversity index that takes account species richness, evenness, and abundance. This index gives more weight to evenness and common species. It has also been likened to a ‘similar index’, where the higher the value, the lower the diversity. This might be better for picking up dominant species, than rare species. 
+**Read:** The DNA sequence of one fragment, or section of DNA 
 
-**Species Evenness (E):** A diversity index reflecting the relative abundance amongst different species represented in an environment. For example, if you have three species but one is incredibly endangered, it will have low evenness. Pielou’s evenness index can be used here. 
+**Read depth:** The number of separate reads from Next Generation Sequencing for a specific genomic region 
 
-**Species Dominance:** A diversity index that reflects over-represented species in an environment, given abundance or biomass. 
+**Scaffold:** A portion of a genome sequence assembled from contigs, often containing gaps between those contigs 
 
-**Species Richness (S):** A diversity index reflecting number of different species represented in an environment. Species richness does not take into account abundance or distribution. 
-
-**UniFrac:** A beta diversity metric that uses the phylogenetic tree to show the branch length that is shared between samples. An unweighted UniFrac is purely based on sequence distances (no abundance information), while a weighted Unirac is where branch lengths are weighted by relative abundance.
+**Third Generation / Long-read Sequencing:** DNA sequencing technologies that produce sequence reads measuring thousands of base pairs or longer 
 
 
 
 References:
 
-Willis AD (2019) Rarefaction, alpha diversity, and statistics. Frontiers in Microbiology. [https://doi.org/10.3389/fmicb.2019.02407](https://doi.org/10.3389/fmicb.2019.02407).
+Allendorf, F. W., Funk, W. C., Aitken, S. N., Byrne, M., Luikart, G., & Antunes, A. (2022). Conservation and the Genomics of Populations (3rd ed.). Oxford University Press. [https://doi.org/10.1093/oso/9780198856566.001.0001](https://doi.org/10.1093/oso/9780198856566.001.0001).
