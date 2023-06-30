@@ -1,2 +1,2 @@
-# MicrobiomeHub.github.io
-Boise State Microbiome Hub
+# Genomics_Workflow.github.io
+Genomics Workflow
