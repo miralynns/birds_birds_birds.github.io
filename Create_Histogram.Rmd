@@ -1,0 +1,79 @@
+---
+title: "Create Histogram"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+**Genomescope and Jellyfish**
+
+Genomescope is a web-tool used to estimate genome size, heterozygosity, and repeat content from short short read sequence data using a kmer-based statistical approach. To read more, or to access, visit [Genomescope](http://qb.cshl.edu/genomescope/). To run Genomescope, you will need to apply [Jellyfish](https://github.com/gmarcais/Jellyfish), a tool used to quickly and efficiently count kmers in DNA. Apply Genomescope and Jellyfish in the following steps:
+
+**1)** Count kmers using jellyfish
+
+**2)**Generate histogram using jellyfish
+
+**3)** Download histogram, and submit it to Genomescope
+
+ ------
+
+# Count K-mers using Jellyfish
+**k-mer** - all the possible nucleotide sequences of a certain length, ex. K=2 all the possible kmers are: AA AT AC AG TA TT TC TG CA CT CC CG GA GT GC GG
+ Be sure the Jellyfish module is available and uploaded on your HPC.
+
+ First, unzip your files
+ 
+ ```Bash
+ #applying an * will unzip all .fastq.gz files
+ gzip -d *.fastq.gz
+ ```
+
+ Then, write and submit a job script with the following code:
+ 
+ ```Bash
+ echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+ #
+ jellyfish count -C -m 21 -t $NSLOTS -s 800000000 /path/to/fastq/files/*.fastq -o reads.jf 
+ #
+ echo = `date` job $JOB_NAME done
+ #
+ #Explanation
+ #-m = kmer length
+ #-s = RAM
+ #-C = "canonical kmers"
+ ```
+
+ ------
+
+# Generate a histogram file
+ Write and submit a job script with the following code:
+ 
+ ```Bash
+ echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+ #
+ jellyfish histo -t $NSLOTS reads.jf > reads.histo
+ #
+ echo = `date` job $JOB_NAME done
+ ```
+
+ ------
+ 
+# Download histogram, and submit it to Genomescope
+ First, download the histogram file using ffsend
+ 
+ ```Bash
+ ffsend upload reads.histo
+ ```
+Next, upload the histogram file to [Genomescope](http://qb.cshl.edu/genomescope/).
+
+Record the url that Genomescope generates for you, so you can easily return to view your results in the future.
+

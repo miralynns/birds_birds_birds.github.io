@@ -1,0 +1,69 @@
+---
+title: "Assembly Statistics"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+**Fasta Metadata Parser**
+
+Fasta Metadata Parser is a python script that summarizes statistics from assembly files. For more information, or to download, visit [Fasta_Metadata_Parser](https://pypi.org/project/assembly-stats/).
+
+The following statistics are produced:
+
+**Total number of base pairs:**
+
+**Total number of contigs:**
+
+**N90:**
+
+**N80:**
+
+**N70:**
+
+**N60:**
+
+**N50:**
+
+**L90:**
+
+**L80:**
+
+**L70:**
+
+**L60:**
+
+**L50:**
+
+**GC content:**
+
+**Median contig size:**
+
+**Mean contig size:**
+
+**Longest contig is:**
+
+**Shortest contig is:**
+
+**Nx** - the largest contig size at which at least x% of bases are contained in contigs at least this length
+  ex. if N50 = 60 - at least half of the nucleotides in the assembly belongs to contigs with the N50 length of 60 nucleotides or longer
+
+Note: You can calculate N50 for contigs and scaffolds. If N50 of contigs and N50 of scaffolds are similar, this generally indicates good assembly coverage
+
+To run the Fasta Metadata Parser, be sure that [Assembly_Stats](https://pypi.org/project/assembly-stats/) is installed on your HPC, and write and submit a job script with the following code:
+
+```Bash
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+#
+assembly_stats <ASSEMBLY> > assembly_stats.out
+#
+echo = `date` job $JOB_NAME done
+```

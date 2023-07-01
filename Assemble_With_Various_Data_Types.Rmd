@@ -1,0 +1,74 @@
+---
+title: "Assemble with Various Data Types"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+**Hifiasm**
+
+Hifiasm is a fast haplotype-resolved de novo assembler for PacBio HiFi reads, which is a type of long-read sequence data. Hifiasm can use trio (offspring + parent 1 + parent 2 data), short reads data, or Hi-C data to produce haplotype-resolved assemblies. **Hi-C data** is a proximity ligation method based on short read data that uses the physical location to link to genome structure. So, in the case that you are working with various datatypes, such as long and short read data, Hifiasm may be a solution. For more information, or to install, visit [Hifiasm](https://hifiasm.readthedocs.io/en/latest/). Apply Hifiasm in the following steps:
+
+**1)** First, assemble with only HiFi data, if applicable
+
+**2)** Next, assemble with both HiFi and Hi-C data, if applicable
+
+**3)** Convert to fasta file
+
+------
+
+# Assemble with only HiFi, or long-read data data
+
+Write and submit a job script with the following code:
+
+```Bash
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+#
+hifiasm -o output_file.asm -t 32 --h1 hifi_read1.fastq.gz --h2 hifi_read2.fastq.gz additional_pacbio_or_hifi_files_if_applicable.fastq.gz
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-o: name and path of the output file in asm format
+#-t: sets the number of CPUs in use
+#Input sequences should be FASTA or FASTQ format, uncompressed or compressed with gzip (.gz). The quality scores of reads in FASTQ are ignored by hifiasm. Hifiasm outputs assemblies in `GFA <https://github.com/pmelsted/GFA-spec/blob/master/GFA-spec.md>`_ format.
+```
+
+------
+
+# Assembly with Hifi and Hi-C data
+
+Write and submit a job script with the following code:
+
+```Bash
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+#
+hifiasm -o output_file.asm -t32 --h1 hi_c_read1.fq.gz --h2 hi_c_read2.fq.gz hifi_file.fq.gz
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-o: name and path of the output file in asm format
+#-t: sets the number of CPUs in use
+#--h1: path to read 1 of Hi_C data
+#--h2: path to read 2 of Hi_C data
+#Input sequences should be FASTA or FASTQ format, uncompressed or compressed with gzip (.gz). The quality scores of reads in FASTQ are ignored by hifiasm. Hifiasm outputs assemblies in `GFA <https://github.com/pmelsted/GFA-spec/blob/master/GFA-spec.md>`_ format.
+```
+
+------
+
+# Convert to fasta files
+The following can be done in a computational or interactive node, or submitted as a job script.
+
+```Bash
+awk '/^S/{print ">"$2;print $3}' file.gfa > file.fa
+````
+
