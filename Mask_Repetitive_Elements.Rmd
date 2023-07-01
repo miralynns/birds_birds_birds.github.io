@@ -1,0 +1,76 @@
+---
+title: "Mask Repetitive Elements"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# RepeatModeler and RepeatMasker
+The next step is to mask and annotate repeats with RepeatModeler and RepeatMasker. 
+
+**RepeatModeler** is a repeat-identifying software that can provide a list of repeat family sequences to mask repeats in a genome with RepeatMasker. For more information, or to download, visit [RepeatModeler](http://www.repeatmasker.org/RepeatModeler/).
+
+**RepeatMasker** is a program that screens DNA sequences for interspersed repeats and low complexity DNA sequences. the output of the program is a detailed annotation of the repeats that are present in the query sequence as well as a modified version of the query sequence in which all the annotated repeats have been masked. For more information, or to download, visit [RepeatMasker](http://www.repeatmasker.org/RMDownload.html).
+
+We will apply this software in the following steps:
+
+**1)** Build a database for RepeatModeler
+
+**2)** Run RepeatModeler
+
+**3)** Run RepeatMasker to annotate repeats
+
+## Build a Database for RepeatModeler
+This can be run on an interactive node, or by submitting a job with the following code:
+```Bash
+#build database
+BuildDatabase -name database_name /path/to_assembly/file.fasta
+#
+#Explanation
+#-name: name to be given to the database
+#genome file in fasta format
+```
+## Run RepeatModeler
+Write and submit a job script with the following code:
+```Bash
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+RepeatModeler -database databasa_name -pa 36 -engine ncbi > repeatmodeler_cl_out.log
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-database: The prefix name of a XDF formatted sequence database containing the genomic sequence to use when building repeat models
+#-pa: number of cpus
+#-engine: The name of the search engine we are using. I.e abblast/wublast or ncbi (rmblast version).
+#Note the new version of repeatmodeler calls another program called LTRStruct.
+#-LTRStruct: enables the optional LTR structural finder.
+```
+
+## Run RepeatMasker to Annotate Repeats
+Write and submit a job script with the following code:
+```Bash
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+RepeatMasker -pa $NSLOTS -xsmall -gff -lib consensi.fa.classified -dir ../repeatmasker /path/to_assembly/file.fasta
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-lib: repeatmodeler repbase database to be search
+#-pa: number of cpus
+#-xsmall: softmasking (instead of hardmasking with N)
+#-dir ../repmasker: writes the output to the directory repmasker
+#-gff: output format of the annotated repeats
+```

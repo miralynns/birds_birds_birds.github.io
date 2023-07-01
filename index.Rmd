@@ -1,0 +1,52 @@
+---
+title: "Genomics Workflow"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{js logo-js, echo=FALSE}
+$(document).ready(function() {
+});
+```
+
+```{r packages, echo=FALSE, warning=FALSE, include=FALSE}
+library(knitr)
+library(rmarkdown)
+library(bookdown)
+#library(distill)
+library(knitcitations)
+library(formatR)
+library(devtools)
+library(kfigr)
+library(dplyr)
+library(kableExtra)
+library(tufte)
+#Generate BibTex citation file for all R packages used to produce report
+knitr::write_bib(.packages(), file = 'packages.bib')
+```
+
+```{r repo, echo=FALSE, fig.align = 'center', out.width = '100%'}
+knitr::include_graphics("Images/GEM3_nov5_logo.png")
+```
+
+# Vision Statement
+
+This genomics workflow was created by Idaho EPSCoR [GEM3](https://www.idahogem3.org) participants and attendees of the 2023 Smithsonian School of Conservation Bioinformatics Analysis of Conservation Genomics Workshop through support of GEM3. The purpose of this workflow module is to share what was learned in this workshop and build capacity in conservation genomics and bioinformatics.
+
+# What Will Be Covered?
+
+Please follow this workflow to learn about how to process raw genomic resequencing data, as well as downstream analysis options. 
+
+# What Is Required?
+
+You will need access to an HPC, as well as R for downstream analyses. Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution's HPC will also be necessary.
