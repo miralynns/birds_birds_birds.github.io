@@ -1,0 +1,30 @@
+---
+title: "Trim Adaptors"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+TrimGalore! is a "wrapper script" written to automate adaptor trimming and quality control. This program will detect adapters present, and remove very low quality reads (quality score <20) by default. For more information, or to download, visit [TrimGalore!](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/).
+
+Note: Many assemblers do not recommend trimming and thinning data, but it beneficial for downstream analyses. Consider what type of data you are processing. For example, PacBio data is error-corrected by the assembler, but it is common to procceed with trimming and thinning of Illumina data. 
+
+To run TrimGalore on your genomic data, be sure that the TrimGalore! module is available and loaded on your HPC, and write a job script using the following code:
+```Bash
+ echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+
+#trimgalore command, call paired fastq files
+trim_galore --paired --retain_unpaired <FILE_1.fastq> <FILE_2.fastq>
+
+ echo = `date` job $JOB_NAME done
+```
+
+Once the job is complete, you can run FastQC again to assess changes in the files.
