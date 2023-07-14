@@ -13,7 +13,6 @@
 
 <title>Glossary</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -63,6 +62,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +83,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +308,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -342,7 +342,7 @@ div.tocify {
   <a href="Mask_Repetitive_Elements.html">Mask Repetitive Elements</a>
 </li>
 <li>
-  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction & Begin Annotation</a>
+  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction and Begin Annotation</a>
 </li>
 <li>
   <a href="Call_Variants.html">Call Variants</a>
@@ -352,7 +352,8 @@ div.tocify {
 </li>
 <li>
   <a href="Unix_Linux_Cheat_Sheet.html">Common Unix / Linux Commands</a>
-</li>      </ul>
+</li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -369,28 +370,31 @@ div.tocify {
 </div>
 
 
-<p><strong>Amplicon Sequence Variant (ASV):</strong> A unique sequence read, that is the result of a pipeline that corrects for quality and errors (i.e., denoises), which can be used as a proxy for a unique species.</p>
+<p><strong>Adaptor / Adapter:</strong> Short single- or double-stranded oligonucleotides
+that can be ligated to DNA or RNA fragments to barcode or amplify those fragments</p>
+<p><strong>Amplicon Sequence Variant (ASV):</strong> A unique sequence read, that is the result of a pipeline that corrects for quality and errors (i.e., denoises), which can be used as a proxy for a unique species</p>
 <p><strong>Contig:</strong> A continuous DNA sequence assembled from a series of short, overlapping sequences</p>
-<p><strong>De Novo Assembly:</strong> Constructing a novel genome assembly resulting in a reference genome; assembling a genome of a species without prior data of that species' genome to align or compare to</p>
+<p><strong>De Novo Assembly:</strong> Constructing a novel genome assembly resulting in a reference genome; assembling a genome of a species without prior data of that species’ genome to align or compare to</p>
 <p><strong>DNA Sequence:</strong> The sequential order of nucleotides composing DNA</p>
-<p><strong>Genome:</strong> Complete genetic information of an organism </p>
-<p><strong>Genome Annotation:</strong> The process of identifying genes and coding regions in a genome and determining the function of those genes</p>
+<p><strong>Genome:</strong> Complete genetic information of an organism</p>
 <p><strong>Genome Assembly:</strong> A computational representation of a genome sequence built by aligning and merging DNA sequence fragments in order to mimic the original sequence</p>
+<p><strong>Indel:</strong> Insertion or deletion of a specific nucleotide sequence within a genome</p>
 <p><strong>K-mer:</strong> All the possible nucleotide sequences of a certain length, ex. K=2 all the possible kmers are: AA AT AC AG TA TT TC TG CA CT CC CG GA GT GC GG</p>
-<p><strong>Next Generation Sequencing (NGS):</strong> DNA sequencing technologies that produce millions or billions of short reads (25-500bp) quickly and efficiently</p>
+<p><strong>Next Generation Sequencing (NGS):</strong> DNA sequencing technologies that produce millions or billions of short reads (25-500bp) quickly and efficiently.</p>
 <p><strong>Nx:</strong> The largest contig size at which at least x% of bases are contained in contigs of least this length
-  ex. if N50 = 60 - at least half of the nucleotides in the assembly belongs to contigs with the N50 length of 60 nucleotides or longer</p>
+ex. if N50 = 60 - at least half of the nucleotides in the assembly belongs to contigs with the N50 length of 60 nucleotides or longer</p>
 <p><strong>Operational Taxonomic Unit (OTU):</strong> A taxonomic unit, derived from sequence clustering approaches. Traditionally, this has included data without denoising.</p>
 <p><strong>Ortholog:</strong> A homologous gene found in different species that can be traced back to a common ancestral genome</p>
-<p><strong>Reference Genome:</strong> A fully sequenced, assembled, and preferrably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or "reference"; the product of de novo assembly</p>
-<p><strong>Resequence:</strong> Sequencing the genome of an individual of a certain species where a reference genome exists; sequences are aligned to the reference genome for assembly</p>
 <p><strong>Read:</strong> The DNA sequence of one fragment, or section of DNA</p>
 <p><strong>Read depth:</strong> The number of separate reads from Next Generation Sequencing for a specific genomic region</p>
+<p><strong>Read group:</strong> A set of NGS reads that were all the product of a single sequencing run on one lane</p>
+<p><strong>Reference Genome:</strong> A fully sequenced, assembled, and preferably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or “reference”; the product of de novo assembly</p>
+<p><strong>Repetitive element:</strong> A sequence of nucleotides in DNA that occur in multiple copies across the genome</p>
+<p><strong>Resequence:</strong> Sequencing the genome of an individual of a certain species where a reference genome exists; sequences are aligned to the reference genome for assembly</p>
 <p><strong>Scaffold:</strong> A portion of a genome sequence assembled from contigs, often containing gaps between those contigs</p>
-<p><strong>Short-read Sequencing:</strong> A type of Next Generation Sequencing where sequencing is carried out through synthesis of small DNA fragments, often measuring 50 to 300 bp in length</p>
 <p><strong>Third Generation / Long-read Sequencing:</strong> DNA sequencing technologies that produce sequence reads measuring thousands of base pairs or longer</p>
 <p>References:</p>
-<p>Allendorf, F. W., Funk, W. C., Aitken, S. N., Byrne, M., Luikart, G., & Antunes, A. (2022). Conservation and the Genomics of Populations (3rd ed.). Oxford University Press. <a href="https://doi.org/10.1093/oso/9780198856566.001.0001">https://doi.org/10.1093/oso/9780198856566.001.0001</a>.</p>
+<p>Allendorf, F. W., Funk, W. C., Aitken, S. N., Byrne, M., Luikart, G., &amp; Antunes, A. (2022). Conservation and the Genomics of Populations (3rd ed.). Oxford University Press. <a href="https://doi.org/10.1093/oso/9780198856566.001.0001">https://doi.org/10.1093/oso/9780198856566.001.0001</a>.</p>
 
 
 

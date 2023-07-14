@@ -371,7 +371,7 @@ div.tocify {
 
 
 <p><strong>Hifiasm</strong></p>
-<p>Hifiasm is a fast haplotype-resolved de novo assembler for PacBio HiFi reads, which is a type of long-read sequence data. Hifiasm can use trio (offspring + parent 1 + parent 2 data), short reads data, or Hi-C data to produce haplotype-resolved assemblies. <strong>Hi-C data</strong> is a proximity ligation method based on short read data that uses the physical location to link to genome structure. So, in the case that you are working with various datatypes, such as long and short read data, Hifiasm may be a solution. For more information, or to install, visit <a href="https://hifiasm.readthedocs.io/en/latest/">Hifiasm</a>. Apply Hifiasm in the following steps:</p>
+<p>Hifiasm is a fast haplotype-resolved de novo assembler for <strong>PacBio HiFi</strong> reads, which are a type of long-read sequence data. Hifiasm can use trio (offspring + parent 1 + parent 2 data), short reads datum, or Hi-C data to produce haplotype-resolved assemblies. <strong>Hi-C data</strong> is a proximity ligation method based on short read data that uses the physical location to link to genome structure. So, in the case that you are working with various datatypes, such as long and short read data, Hifiasm may be a solution. For more information, or to install, visit <a href="https://hifiasm.readthedocs.io/en/latest/">Hifiasm</a>. Apply Hifiasm in the following steps:</p>
 <p><strong>1)</strong> First, assemble with only HiFi data, if applicable</p>
 <p><strong>2)</strong> Next, assemble with both HiFi and Hi-C data, if applicable</p>
 <p><strong>3)</strong> Convert to fasta file</p>
@@ -410,7 +410,7 @@ echo = `date` job $JOB_NAME done
 </div>
 <div id="convert-to-fasta-files" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Convert to fasta files</h1>
-<p>The following can be done in a computational or interactive node, or submitted as a job script.</p>
+<p>Lastly, convert your files to fasta files. This can be done in a computational or interactive node, or submitted as a job script using the following code:</p>
 <pre class="bash"><code>awk &#39;/^S/{print &quot;&gt;&quot;$2;print $3}&#39; file.gfa &gt; file.fa</code></pre>
 </div>
 

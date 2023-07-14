@@ -19,7 +19,7 @@ navbar:
       href: Assess_Completeness.html
     - text: "Mask Repetitive Elements"
       href: Mask_Repetitive_Elements.html
-    - text: "Gene Prediction & Begin Annotation"
+    - text: "Gene Prediction and Begin Annotation"
       href: Gene_Prediction_Begin_Annotation.html
     - text: "Call Variants"
       href: Call_Variants.html

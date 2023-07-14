@@ -396,7 +396,7 @@ ex. if N50 = 60 - at least half of the nucleotides in the assembly belongs to co
 <p>To run the Fasta Metadata Parser, be sure that <a href="https://pypi.org/project/assembly-stats/">Assembly_Stats</a> is installed on your HPC, and write and submit a job script with the following code:</p>
 <pre class="bash"><code>echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
 #
-assembly_stats &lt;ASSEMBLY&gt; &gt; assembly_stats.out
+assembly_stats &lt;assembly_stats_file.&gt; &gt; assembly_stats.out
 #
 echo = `date` job $JOB_NAME done</code></pre>
 

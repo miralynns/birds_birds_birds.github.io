@@ -14,6 +14,9 @@ editor_options:
     wrap: sentence
 ---
 
+**Adaptor / Adapter:** Short single- or double-stranded oligonucleotides
+that can be ligated to DNA or RNA fragments to barcode or amplify those fragments
+
 **Amplicon Sequence Variant (ASV):** A unique sequence read, that is the result of a pipeline that corrects for quality and errors (i.e., denoises), which can be used as a proxy for a unique species 
 
 **Contig:** A continuous DNA sequence assembled from a series of short, overlapping sequences 
@@ -26,6 +29,8 @@ editor_options:
 
 **Genome Assembly:** A computational representation of a genome sequence built by aligning and merging DNA sequence fragments in order to mimic the original sequence 
 
+**Indel:** Insertion or deletion of a specific nucleotide sequence within a genome
+
 **K-mer:** All the possible nucleotide sequences of a certain length, ex. K=2 all the possible kmers are: AA AT AC AG TA TT TC TG CA CT CC CG GA GT GC GG
 
 **Next Generation Sequencing (NGS):** DNA sequencing technologies that produce millions or billions of short reads (25-500bp) quickly and efficiently.
@@ -37,15 +42,17 @@ editor_options:
 
 **Ortholog:** A homologous gene found in different species that can be traced back to a common ancestral genome 
 
+**Read:** The DNA sequence of one fragment, or section of DNA 
+
+**Read depth:** The number of separate reads from Next Generation Sequencing for a specific genomic region 
+
 **Read group:** A set of NGS reads that were all the product of a single sequencing run on one lane
 
 **Reference Genome:** A fully sequenced, assembled, and preferably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or "reference"; the product of de novo assembly 
 
+**Repetitive element:** A sequence of nucleotides in DNA that occur in multiple copies across the genome
+
 **Resequence:** Sequencing the genome of an individual of a certain species where a reference genome exists; sequences are aligned to the reference genome for assembly
-
-**Read:** The DNA sequence of one fragment, or section of DNA 
-
-**Read depth:** The number of separate reads from Next Generation Sequencing for a specific genomic region 
 
 **Scaffold:** A portion of a genome sequence assembled from contigs, often containing gaps between those contigs 
 

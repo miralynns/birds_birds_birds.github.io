@@ -342,7 +342,7 @@ div.tocify {
   <a href="Mask_Repetitive_Elements.html">Mask Repetitive Elements</a>
 </li>
 <li>
-  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction &amp; Begin Annotation</a>
+  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction and Begin Annotation</a>
 </li>
 <li>
   <a href="Call_Variants.html">Call Variants</a>
@@ -522,9 +522,8 @@ cd /path/to/folder/containing/file
 #index command, for indexing vcf files
 tabix -p vcf output_cohort_file.g.vcf.gz</code></pre>
 </div>
-</div>
-<div id="genotyping" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Genotyping</h1>
+<div id="genotyping" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Genotyping</h2>
 <p>GenotypeGVCFs is a tool within GATK built to perform joint genotyping on your samples. Note that this tool only processes one input file, whether it is a cohort file, or one individual. Furthermore, the file must also have genotype likelihoods produced by HaplotypeCaller, as we did so prior in this module. For more information about this tool, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037057852-GenotypeGVCFs">GenotypeGVCFs</a>.</p>
 <p>To run GenotypeGVCFs on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
 <pre class="bash"><code>#
@@ -545,8 +544,9 @@ echo = `date` job $JOB_NAME done
 #-R: reference genome
 #-O: output file with the genotype in vcf format</code></pre>
 </div>
-<div id="snp-filtering" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> SNP filtering</h1>
+</div>
+<div id="snp-filtering" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> SNP filtering</h1>
 <p>VariantFiltration is a tool within GATK built to hard-filter variant calls based on custom quality criteria such as sequencing depth and mapping quality. The output vcf file can then be used in downstream population genomic analyses. For more information about this tool, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration">VariantFiltration</a>.</p>
 <p>To run GenotypeGVCFs on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
 <pre class="bash"><code>#
