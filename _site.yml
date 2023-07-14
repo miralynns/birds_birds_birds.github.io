@@ -1,0 +1,30 @@
+name: "Genomics Workflow"
+output_dir: "."
+navbar:
+  title: "Genomics Workflow"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Scan Raw Data"
+      href: Getting_Started.html
+    - text: "Trim Adaptors"
+      href: Trim_Adaptors.html
+    - text: "Create Histogram"
+      href: Create_Histogram.html
+    - text: "Assemble with Various Data Types"
+      href: Assemble_With_Various_Data_Types.html
+    - text: "Assembly Statistics"
+      href: Assembly_Statistics.html
+    - text: "Assembly Completeness and Quality"
+      href: Assess_Completeness.html
+    - text: "Mask Repetitive Elements"
+      href: Mask_Repetitive_Elements.html
+    - text: "Gene Prediction & Begin Annotation"
+      href: Gene_Prediction_Begin_Annotation.html
+    - text: "Call Variants"
+      href: Call_Variants.html
+    - text: "Glossary"
+      href: Glossary.html
+    - text: "Common Unix / Linux Commands"
+      href: Unix_Linux_Cheat_Sheet.html
+      
