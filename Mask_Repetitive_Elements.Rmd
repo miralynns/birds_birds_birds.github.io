@@ -14,7 +14,6 @@ editor_options:
     wrap: sentence
 ---
 
-# RepeatModeler and RepeatMasker
 The next step is to mask and annotate repeats with RepeatModeler and RepeatMasker. 
 
 **RepeatModeler** is a repeat-identifying software that can provide a list of repeat family sequences to mask repeats in a genome with RepeatMasker. For more information, or to download, visit [RepeatModeler](http://www.repeatmasker.org/RepeatModeler/).
@@ -29,7 +28,7 @@ We will apply this software in the following steps:
 
 **3)** Run RepeatMasker to annotate repeats
 
-## Build a Database for RepeatModeler
+# Build a Database for RepeatModeler
 This can be run on an interactive node, or by submitting a job with the following code:
 ```Bash
 #build database
@@ -39,7 +38,7 @@ BuildDatabase -name database_name /path/to_assembly/file.fasta
 #-name: name to be given to the database
 #genome file in fasta format
 ```
-## Run RepeatModeler
+# Run RepeatModeler
 Write and submit a job script with the following code:
 ```Bash
 echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
@@ -57,7 +56,7 @@ echo = `date` job $JOB_NAME done
 #-LTRStruct: enables the optional LTR structural finder.
 ```
 
-## Run RepeatMasker to Annotate Repeats
+# Run RepeatMasker to Annotate Repeats
 Write and submit a job script with the following code:
 ```Bash
 echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
