@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Call Variants</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Genomics Workflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Getting_Started.html">Scan Raw Data</a>
+</li>
+<li>
+  <a href="Trim_Adaptors.html">Trim Adaptors</a>
+</li>
+<li>
+  <a href="Create_Histogram.html">Create Histogram</a>
+</li>
+<li>
+  <a href="Assemble_With_Various_Data_Types.html">Assemble with Various Data Types</a>
+</li>
+<li>
+  <a href="Assembly_Statistics.html">Assembly Statistics</a>
+</li>
+<li>
+  <a href="Assess_Completeness.html">Assembly Completeness and Quality</a>
+</li>
+<li>
+  <a href="Mask_Repetitive_Elements.html">Mask Repetitive Elements</a>
+</li>
+<li>
+  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction &amp; Begin Annotation</a>
+</li>
+<li>
+  <a href="Call_Variants.html">Call Variants</a>
+</li>
+<li>
+  <a href="Glossary.html">Glossary</a>
+</li>
+<li>
+  <a href="Unix_Linux_Cheat_Sheet.html">Common Unix / Linux Commands</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Call Variants</h1>
+
+</div>
+
+
+<p>Next, we will call variants across the genome using <strong>Minimap2</strong>, <strong>Genome Analysis Toolkit (GATK)</strong>, and <strong>Samtools</strong> in the following steps:</p>
+<p><strong>#1)</strong> Map samples to reference genome using Minimap2, convert files from SAM to BAM format</p>
+<p><strong>#2)</strong> Map samples using GATK</p>
+<p><strong>#3)</strong> Add read group information to BAM files using GATK</p>
+<p><strong>#4)</strong> Index with Samtools</p>
+<p><strong>#5)</strong> Base Quality Recalibration</p>
+<p><strong>#6)</strong> Call SNPs and indels</p>
+<p><strong>#7)</strong> Combine multiple VCF files</p>
+<p><strong>#8)</strong> Perform joint Genotyping with GenotypeGVCFs</p>
+<p><strong>#9)</strong> SNP Filtering</p>
+<div id="map-samples-to-reference-genome-using-minimap2" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Map samples to reference genome using Minimap2</h1>
+<p>Map your raw genomic data from an individual or individuals to the reference genome of that particular species using <strong>Minimap2</strong>, a sequence alignment program that aligns DNA sequences against a large reference database. For more information, or to download, visit <a href="https://github.com/lh3/minimap2">Minimap2</a>.</p>
+<p>During this step, also convert the file format from .SAM (sequence alignment map) to .BAM (binary alignment map) using <strong>Samtools</strong>, a suite of programs designed for interacting with high-throughput sequencing data. For more information, or to download, visit <a href="https://www.htslib.org">Samtools</a>.</p>
+<p>To run Minimap2 and Samtools on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+minimap2 -ax sr -t 20 /path/to/reference/genome/file.fasta /path/to/raw/data/files/file_1.fastq.gz /path/to/raw/data/files/file_2.fastq.gz | samtools sort -@20 -O BAM -o output_bam_file.bam -
+#
+echo = `date` job $JOB_NAME done
+#
+#Minimap2 Explanation
+#-ax: preset configuration to map illumina short reads to genomes, change as needed
+#-t: number of threads to use
+#
+#Samtools Explanation
+#view: convert command 
+#-b  output format BAM
+#sort: sort command
+#-@: number of threads to use
+#-O: output format
+#-o: name of the outputformat</code></pre>
+</div>
+<div id="map-samples-using-gatk" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Map samples using GATK</h1>
+<p><strong>Genome Analysis Toolkit (GATK)</strong> maps genome sequencing data to a reference and produce high-quality variant calls. We will first use GATK to identify duplicate reads, or reads that originated from a single fragment of DNA often occurring during sample preparation. For more information about GATK, to read best practices recommendations, or to download software packages required, visit <a href="https://gatk.broadinstitute.org/hc/en-us">GATK</a>.</p>
+<p>To run GATK on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+rungatk MarkDuplicates 
+-I=bam_file.bam -O=bam_file_duplicates_marked.bam -M=bam_file_duplicates_marked.metrics
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation 
+#-I: input .bam file
+#-O: output / marked duplicates file
+#-M: output / metrics file</code></pre>
+</div>
+<div id="add-read-group-information-to-bam-files-using-gatk" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Add read group information to BAM files using GATK</h1>
+<p>Next, apply GATK to add read group information to your .bam file. This command will assign all of the reads in the file to a single new read group. A <strong>read group</strong> is a set of NGS reads that were all the product of a single sequencing run on one lane. Algorithms in GATK require read group information to identify which reads were sequenced together to compensate for variability and error between sequencing runs.</p>
+<p>To run GATK on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+rungatk AddOrReplaceReadGroups -I=/path/to/file/bam_file_duplicates_marked.bam -O=bam_file_duplicates_marked_read_ID.bam -ID=1 -LB=lib2 -PL=ILLUMINA -PU=unit1 -SM=sample_name
+#
+echo = `date` job $JOB_NAME done
+#
+#-I: input .bam file
+#-O: output / marked duplicates file
+#-ID: read Group ID; lane number
+#-LB: library ID
+#-PL: platform, ex. Illumina
+#-PU: run barcode 
+#-SM: sample Name</code></pre>
+</div>
+<div id="index-with-samtools" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Index with Samtools</h1>
+<p>Next, use Samtools to index the .bam file. The index command will create a new index file that will allow fast and efficient look-up of data in the .bam file.</p>
+<p>The following code can be run in an interactive / computational node on your HPC. Be sure to load GATK and Samtools, specifying the current versions, prior to running the following code:</p>
+<pre class="bash"><code>rungatk CreateSequenceDictionary -R=reference_genome_file.fasta -O=indexed_reference_genome_file.dict
+samtools faidx reference_genome_file.fasta
+samtools index bam_file_duplicates_marked_read_ID.bam
+
+#Explanation
+#-R: reference genome
+#-O: output reference index dictionary</code></pre>
+</div>
+<div id="base-quality-recalibration" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Base quality recalibration</h1>
+<p>The GATK best practices recommend performing Base Quality Score Recalibration, which detects errors in data by comparing it to a reference training data set. However, while this can be done with model organisms, there are challenges in doing this with non-model organisms including the lack a high confidence database for training. Furthermore, while it is an option to create a custom training database, in many cases it has not worked as efficiently and has led to biased results. To apply this procedure to your model organism, or determine if this may be beneficial for your model organism, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890531-Base-Quality-Score-Recalibration-BQSR-">GATK Recalibration</a>.</p>
+</div>
+<div id="call-snps-and-indels" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Call SNPs and indels</h1>
+<p><strong>HaplotypeCaller</strong> is the tool within GATK built to call germline single nucleotide polymorphisms and small Indels using local de-novo assembly of haplotype regions. For more information about how this tool works, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller">HaplotypeCaller</a></p>
+<p>To run HaplotypeCaller on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+rungatk HaplotypeCaller -I bam_file.bam -R reference_fasta_file.fasta -ERC GVCF -O output_file.g.vcf.gz
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-I: input .bam file
+#-R: reference .fasta file
+#-O: output
+#-ERC: preset parameters for likelihood calculations, recommended for large number of samples</code></pre>
+</div>
+<div id="combine-multiple-vcf-files" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Combine multiple VCF files</h1>
+<p>The next step is to combine the files of all of the individuals you have been processing into one VCF file. We will do this by indexing via HTSlib, and then combining using CombineGVCFs.</p>
+<div id="index-files" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Index files</h2>
+<p>Once HaplotypeCaller has been completed, move all files to a single folder. Index files, which can be done in interactive or computational mode on your HPC. Here, we used <strong>HTSlib</strong> for indexing, which is designed for high-throughput sequencing data. For more information, or to download, visit <a href="https://github.com/samtools/htslib">HTSlib</a>.</p>
+<p>To index your data using HTSlib, be sure that the module is available and loaded on your HPC, and you are working in an interactive or computational node. Submit the following code:</p>
+<pre class="bash"><code>#change directory to folder with your files
+cd /path/to/folder/containing/files
+#index command, for indexing vcf files
+tabix -p vcf file_1.g.vcf.gz
+tabix -p vcf file_2.g.vcf.gz
+tabix -p vcf file_3.g.vcf.gz</code></pre>
+</div>
+<div id="combine-files-using-combinegvcfs" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Combine files using CombineGVCFs</h2>
+<p>CombineGVCFs is a tool within GATK built to combine multiple single sample VCF files, merging them into a single multi-sample GVCF file. For more information, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037053272-CombineGVCFs">CombineGVCFs</a></p>
+<p>To run CombineGVCFs on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+rungatk CombineGVCFs -R reference_genome.fasta \
+-V file_1.g.vcf.gz \
+-V file_2.g.vcf.gz \
+-V file_3.g.vcf.gz \
+-O output_cohort_file.g.vcf.gz
+#
+echo = `date` job $JOB_NAME done
+
+#Explanation
+#-V: individual.g.vcf files
+#-R: reference genome
+#-O: output_file.vcf</code></pre>
+</div>
+</div>
+<div id="perform-joint-genotyping-with-genotypegvcfs" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Perform joint Genotyping with GenotypeGVCFs</h1>
+<div id="index-files-1" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Index files</h2>
+<p>To index your data using HTSlib, be sure that the module is available and loaded on your HPC, and you are working in an interactive or computational node. Submit the following code:</p>
+<pre class="bash"><code>#change directory to folder with your files
+cd /path/to/folder/containing/file
+#index command, for indexing vcf files
+tabix -p vcf output_cohort_file.g.vcf.gz</code></pre>
+</div>
+</div>
+<div id="genotyping" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Genotyping</h1>
+<p>GenotypeGVCFs is a tool within GATK built to perform joint genotyping on your samples. Note that this tool only processes one input file, whether it is a cohort file, or one individual. Furthermore, the file must also have genotype likelihoods produced by HaplotypeCaller, as we did so prior in this module. For more information about this tool, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037057852-GenotypeGVCFs">GenotypeGVCFs</a>.</p>
+<p>To run GenotypeGVCFs on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+GATK_JAVA_OPTIONS=-XX:+UseParallelGC
+GATK_JAVA_OPTIONS=-XX:ParallelGCThreads=32
+rungatk GenotypeGVCFs \
+-R /path/to/reference/genome/file/fasta_file.fasta \
+-V cohort_vcf_file.g.vcf.gz \
+-O output_file.vcf.gz $NSLOTS
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-V: cohort file containing all individual samples
+#-R: reference genome
+#-O: output file with the genotype in vcf format</code></pre>
+</div>
+<div id="snp-filtering" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> SNP filtering</h1>
+<p>VariantFiltration is a tool within GATK built to hard-filter variant calls based on custom quality criteria such as sequencing depth and mapping quality. The output vcf file can then be used in downstream population genomic analyses. For more information about this tool, visit <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration">VariantFiltration</a>.</p>
+<p>To run GenotypeGVCFs on your data, be sure that the modules are available, versions are identified and loaded on your HPC, and write a job script using the following code:</p>
+<pre class="bash"><code>#
+echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
+echo + NSLOTS = $NSLOTS
+#
+rungatk VariantFiltration \
+-R /path/to/reference/genome/file/fasta_file.fasta \
+-V output_file.vcf.gz \
+-O output_file_varfilter.vcf \
+--filter-name &quot;Low_depth10&quot; \
+--filter-expression &quot;DP &lt; 10&quot; 
+#
+echo = `date` job $JOB_NAME done
+#
+#Explanation
+#-V: genotyped output vcf files
+#-R: reference genome
+#-O: output file with the variant filter results
+#--filter-name: a given filer name that will be printed in the vcf file for your information
+#-filter-expression: hard filter that you want to perform</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

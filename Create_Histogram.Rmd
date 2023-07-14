@@ -16,11 +16,11 @@ editor_options:
 
 **Genomescope and Jellyfish**
 
-Genomescope is a web-tool used to estimate genome size, heterozygosity, and repeat content from short short read sequence data using a kmer-based statistical approach. To read more, or to access, visit [Genomescope](http://qb.cshl.edu/genomescope/). To run Genomescope, you will need to apply [Jellyfish](https://github.com/gmarcais/Jellyfish), a tool used to quickly and efficiently count kmers in DNA. Apply Genomescope and Jellyfish in the following steps:
+Genomescope is a web-tool used to estimate genome size, heterozygosity, and repeat content from short read sequence data using a kmer-based statistical approach. To read more, or to access, visit [Genomescope](http://qb.cshl.edu/genomescope/). To run Genomescope, you will need to apply [Jellyfish](https://github.com/gmarcais/Jellyfish), a tool used to quickly and efficiently count kmers in DNA. Apply Genomescope and Jellyfish in the following steps:
 
 **1)** Count kmers using jellyfish
 
-**2)**Generate histogram using jellyfish
+**2)** Generate histogram using jellyfish
 
 **3)** Download histogram, and submit it to Genomescope
 

@@ -336,16 +336,16 @@ div.tocify {
   <a href="Assembly_Statistics.html">Assembly Statistics</a>
 </li>
 <li>
-  <a href="Assess_Completeness.html">Assess Completeness</a>
-</li>
-<li>
-  <a href="Quality_Assessment.html">Quality Assessment</a>
+  <a href="Assess_Completeness.html">Assembly Completeness and Quality</a>
 </li>
 <li>
   <a href="Mask_Repetitive_Elements.html">Mask Repetitive Elements</a>
 </li>
 <li>
-  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction and Begin Annotation</a>
+  <a href="Gene_Prediction_Begin_Annotation.html">Gene Prediction &amp; Begin Annotation</a>
+</li>
+<li>
+  <a href="Call_Variants.html">Call Variants</a>
 </li>
 <li>
   <a href="Glossary.html">Glossary</a>
@@ -370,7 +370,7 @@ div.tocify {
 </div>
 
 
-<p>FastQC</p>
+<p><strong>FastQC</strong></p>
 <p>FastQC is a program that will scan raw genomic data and identify if adapters or low quality reads are present. For more information, or to download, visit <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>.</p>
 <p>To run FastQC on your raw genomic data (fastq file), be sure that FastQC module is available and loaded on your HPC, and write a job script using the following code:</p>
 <pre class="bash"><code>echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME

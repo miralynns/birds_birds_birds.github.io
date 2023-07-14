@@ -32,10 +32,10 @@ FastQC is a program that will scan raw genomic data and identify if adapters or 
 
 **ffsend**
 
- Ffsend allows you to easily and securely share files from the command line by generating a temporary URL for you to download to your device, or share with others. For more or to download, visit [ffsend](https://github.com/timvisee/ffsend).
+Ffsend allows you to easily and securely share files from the command line by generating a temporary URL for you to download to your device, or share with others. For more or to download, visit [ffsend](https://github.com/timvisee/ffsend). 
  
  ```Bash
- #load module
+ #load module on your HPC
  module load ffsend
 #
  #command to generate a temporary URL

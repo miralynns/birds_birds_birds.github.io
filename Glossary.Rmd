@@ -37,7 +37,9 @@ editor_options:
 
 **Ortholog:** A homologous gene found in different species that can be traced back to a common ancestral genome 
 
-**Reference Genome:** A fully sequenced, assembled, and preferrably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or "reference"; the product of de novo assembly 
+**Read group:** A set of NGS reads that were all the product of a single sequencing run on one lane
+
+**Reference Genome:** A fully sequenced, assembled, and preferably annotated genome of an individual representative of a specific species, where other genomic data can then be aligned and interpreted against the original or "reference"; the product of de novo assembly 
 
 **Resequence:** Sequencing the genome of an individual of a certain species where a reference genome exists; sequences are aligned to the reference genome for assembly
 
