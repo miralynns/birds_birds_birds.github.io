@@ -1,5 +1,5 @@
 ---
-title: "Assembly Quality Control and Completeness"
+title: "Assembly Completeness and Quality"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
