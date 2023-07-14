@@ -15,7 +15,7 @@ editor_options:
 ---
 **Hifiasm**
 
-Hifiasm is a fast haplotype-resolved de novo assembler for PacBio HiFi reads, which is a type of long-read sequence data. Hifiasm can use trio (offspring + parent 1 + parent 2 data), short reads data, or Hi-C data to produce haplotype-resolved assemblies. **Hi-C data** is a proximity ligation method based on short read data that uses the physical location to link to genome structure. So, in the case that you are working with various datatypes, such as long and short read data, Hifiasm may be a solution. For more information, or to install, visit [Hifiasm](https://hifiasm.readthedocs.io/en/latest/). Apply Hifiasm in the following steps:
+Hifiasm is a fast haplotype-resolved de novo assembler for **PacBio HiFi** reads, which are a type of long-read sequence data. Hifiasm can use trio (offspring + parent 1 + parent 2 data), short reads datum, or Hi-C data to produce haplotype-resolved assemblies. **Hi-C data** is a proximity ligation method based on short read data that uses the physical location to link to genome structure. So, in the case that you are working with various datatypes, such as long and short read data, Hifiasm may be a solution. For more information, or to install, visit [Hifiasm](https://hifiasm.readthedocs.io/en/latest/). Apply Hifiasm in the following steps:
 
 **1)** First, assemble with only HiFi data, if applicable
 
@@ -66,7 +66,7 @@ echo = `date` job $JOB_NAME done
 ------
 
 # Convert to fasta files
-The following can be done in a computational or interactive node, or submitted as a job script.
+Lastly, convert your files to fasta files. This can be done in a computational or interactive node, or submitted as a job script using the following code:
 
 ```Bash
 awk '/^S/{print ">"$2;print $3}' file.gfa > file.fa
