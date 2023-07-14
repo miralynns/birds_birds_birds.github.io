@@ -1,5 +1,5 @@
 ---
-title: "Unix/Linux Cheat Sheet"
+title: "Common Unix / Linux Commands"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
