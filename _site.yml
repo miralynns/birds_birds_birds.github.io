@@ -27,4 +27,6 @@ navbar:
       href: Glossary.html
     - text: "Common Unix / Linux Commands"
       href: Unix_Linux_Cheat_Sheet.html
+    - text: "Citations"
+      href: Citations.html
       

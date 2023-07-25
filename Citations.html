@@ -11,7 +11,7 @@
 
 
 
-<title>Gene Prediction and Begin Annotation</title>
+<title>Citations</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -368,38 +368,32 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Gene Prediction and Begin Annotation</h1>
+<h1 class="title toc-ignore">Citations</h1>
 
 </div>
 
 
-<p><strong>GeMoMa</strong></p>
-<p>Gene Model Mapper (GeMoMa) is a homology-based gene prediction program that uses the annotation of protein-coding genes in a reference genome to infer the annotation of protein-coding genes in a target genome. Thus, GeMoMa uses amino acid and intron position conservation to create gene models. For more information, or to install, visit <a href="http://www.jstacs.de/index.php/GeMoMa">GeMoMa</a>.</p>
-<p>GeMoMa uses the annotation of coding genes from reference genomes, so first, we need to download reference genomes, including a fasta and gff file for each genome. Download reference genomes for your species and / or closely related taxa. To download reference genomes from NCBI:</p>
-<pre class="bash"><code>#download using wget command
-wget -c https://ftp.ncbi.nlm.nih.gov/genomes/all/species/file_genomic.fna.gz
-wget -c https://ftp.ncbi.nlm.nih.gov/genomes/all/species/file_genomic.gff.gz</code></pre>
-<p>To run GeMoMa, be sure that the module is installed and loaded on your HPC. Recognize that the GeMoMa pipeline contains several steps, and is therefore computationally heavy. Be sure to consider this when writing your job script and submitting. Write and submit a job with the following code:</p>
-<pre class="bash"><code>echo + `date` job $JOB_NAME started in $QUEUE with jobID=$JOB_ID on $HOSTNAME
-echo + NSLOTS = $NSLOTS
-#
-set maxHeapSize 400000
-#
-GeMoMa -Xmx400G GeMoMaPipeline threads=$NSLOTS outdir=../gemoma/ GeMoMa.Score=ReAlign AnnotationFinalizer.r=NO p=false o=true t=../assembly/file.fasta s=own i=species a=/path/to/reference/genome/species_genomic.gff g=/path/to/reference/genome/species_genomic.fna s=own i=species #add multiple reference genomes..
-#
-echo = `date` job $JOB_NAME done
-#
-#Explanation
-#-Xmx: define max heap size to increase default memory use
-#threads: # of CPUs
-#AnnotationFinalizer.r: to rename the predictions (NO/YES)
-#p: obtain predicted proteines (false/true)
-#o: keep and safe  individual predictions for each reference species (false/true)
-#t: target genome (fasta)
-#outdir: path and prefix of output directory
-#i: allows to provide an ID for each reference organism
-#g: path to individual reference genome
-#a: path to indvidual annotation genome</code></pre>
+<p>Allendorf, F. W., Funk, W. C., Aitken, S. N., Byrne, M., Luikart, G., &amp; Antunes, A. (2022). Conservation and the Genomics of Populations (3rd ed.). Oxford University Press. <a href="https://doi.org/10.1093/oso/9780198856566.001.0001">https://doi.org/10.1093/oso/9780198856566.001.0001</a>.</p>
+<p>Andrews, S. (2010). FastQC: A Quality Control Tool for High Throughput Sequence Data [Online]. Available online at: <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/" class="uri">http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a></p>
+<p>Arias, C., Dikow, R., Figueiró-Roco, H, Koepfli, K., Spillane, J, Trizna, M (2023). SMSC 2023 Conservation Genomics [Online]. Available online at: <a href="https://github.com/SmithsonianWorkshops/SMSC_2023_Conservation_Genomics" class="uri">https://github.com/SmithsonianWorkshops/SMSC_2023_Conservation_Genomics</a></p>
+<p>Danecek, P., Auton, A., Abecasis, G., Albers, C.A., Eric Banks, Mark A. DePristo, Handsaker, R., Lunter, G., Marth, G., Sherry, S.T., McVean, G., Durbin, R. and 1000 Genomes Project Analysis Group (2011). The Variant Call Format and VCFtools [Online]. Available online at: <a href="https://github.com/timvisee/ffsend-api" class="uri">https://github.com/timvisee/ffsend-api</a></p>
+<p>Grau, J., Keilwagen, J., Gohr, A., Haldemann, B., Posch, S., and Grosse, I. Jstacs: A java framework for statistical analysis and classification of biological sequences. Journal of Machine Learning Research, 13(Jun):1967–1971, 2012.</p>
+<p>Haoyu Cheng, Gregory T. Concepcion, Xiaowen Feng, Haowen Zhang &amp; Heng Li. (2021). Hifiasm [Online]. Available online at: <a href="https://github.com/chhylp123/hifiasm" class="uri">https://github.com/chhylp123/hifiasm</a></p>
+<p>Heng, Li., (2017). Minimap2 [Online]. Available online at: <a href="https://github.com/lh3/minimap2" class="uri">https://github.com/lh3/minimap2</a></p>
+<p>Kreuger, F., (2019). (2019). TrimGalore! [Online]. Available online at: <a href="https://github.com/FelixKrueger/TrimGalore" class="uri">https://github.com/FelixKrueger/TrimGalore</a></p>
+<p>Li, H. (2020) LH3/PSMC: Implementation of the pairwise sequentially Markovian coalescent (PSMC) model, Github. Available at: <a href="https://github.com/lh3/psmc" class="uri">https://github.com/lh3/psmc</a></p>
+<p>Laetsch DR and Blaxter ML. BlobTools: Interrogation of genome assemblies [version 1; peer review: 2 approved with reservations]. F1000Research 2017, 6:1287 (<a href="https://doi.org/10.12688/f1000research.12232.1" class="uri">https://doi.org/10.12688/f1000research.12232.1</a>)</p>
+<p>Manni, M., Berkeley, M. R., Seppey, M., &amp; Zdobnov, E. M. (2021). BUSCO: Assessing genomic data quality and beyond. Current Protocols, 1, e323. doi: 10.1002/cpz1.323</p>
+<p>Marçais, G. (2015). Jellyfish [Online]. Available online at: <a href="https://github.com/gmarcais/Jellyfish" class="uri">https://github.com/gmarcais/Jellyfish</a></p>
+<p>McKenna A, Hanna M, Banks E, Sivachenko A, Cibulskis K, Kernytsky A, Garimella K, Altshuler D, Gabriel S, Daly M, DePristo MA. (2010). The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome Res, 20:1297-303. DOI: 10.1101/gr.107524.110.
+Petr Danecek, James K Bonfield, Jennifer Liddle, John Marshall, Valeriu Ohan, Martin O Pollard, Andrew Whitwham, Thomas Keane, Shane A McCarthy, Robert M Davies, Heng Li</p>
+<p>GigaScience, Volume 10, Issue 2, February 2021, giab008, <a href="https://doi.org/10.1093/gigascience/giab008" class="uri">https://doi.org/10.1093/gigascience/giab008</a></p>
+<p>Poplin R, Ruano-Rubio V, DePristo MA, Fennell TJ, Carneiro MO, Van der Auwera GA, Kling DE, Gauthier LD, Levy-Moonshine A, Roazen D, Shakir K, Thibault J, Chandran S, Whelan C, Lek M, Gabriel S, Daly MJ, Neale B, MacArthur DG, Banks E. (2017). Scaling accurate genetic variant discovery to tens of thousands of samplesbioRxiv, 201178. DOI: 10.1101/201178
+Purcell, S., Neale, B., Todd-Brown, K., Thomas, L., Ferreira, MAR., Bender, D,. Maller, J., de Bakker PIW, Daly MJ &amp; Sham PC (2017). PLINK: a toolset for whole-genome association and population-based linkage analysis [Online]. Available online at: <a href="https://zzz.bwh.harvard.edu/plink/" class="uri">https://zzz.bwh.harvard.edu/plink/</a></p>
+<p>Smit, AFA, Hubley, R. RepeatModeler Open-1.0. 2008-2015 <a href="http://www.repeatmasker.org" class="uri">http://www.repeatmasker.org</a></p>
+<p>Trizna, M. (2019). Assembly-stats [Online]. Available online at: <a href="https://pypi.org/project/assembly-stats/" class="uri">https://pypi.org/project/assembly-stats/</a></p>
+<p>Visée, T. (2018). FFsend [Online]. Available online at: <a href="https://github.com/timvisee/ffsend-api" class="uri">https://github.com/timvisee/ffsend-api</a></p>
+<p>Vurture, GW, Sedlazeck, FJ, Nattestad, M, Underwood, CJ, Fang, H, Gurtowski, J, Schatz, MC (2017) Bioinformatics doi: <a href="https://doi.org/10.1093/bioinformatics/btx153" class="uri">https://doi.org/10.1093/bioinformatics/btx153</a></p>
 
 
 
