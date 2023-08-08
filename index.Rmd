@@ -45,7 +45,9 @@ This genomics workflow was created by Idaho EPSCoR [GEM3](https://www.idahogem3.
 
 # What Will Be Covered?
 
-Please follow this workflow to learn about how to process raw genomic resequencing data, as well as downstream analysis options. Further downstream analyses are captured in the following repository: [GEM3Genomics/Genomics_Downstream_Analyses](https://github.com/Gem3Genomics/Genomics_Downstream_Analyses).
+Please follow this workflow to learn about how to process raw genomic resequencing data, as well as downstream analysis options. Further downstream analyses are captured in the following repository: [GEM3Genomics/Genomics_Downstream_Analyses](https://github.com/Gem3Genomics/Genomics_Downstream_Analyses). 
+
+**Disclaimer: This workflow was developed in March 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.**
 
 # What Is Required?
 
