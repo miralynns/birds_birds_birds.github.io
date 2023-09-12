@@ -1,7 +1,7 @@
-name: "Genomics Workflow"
+name: "Manual Annotation of Functional Genes in Non-model Organisms"
 output_dir: "."
 navbar:
-  title: "Genomics Workflow"
+  title: "Manual Annotation of Functional Genes in Non-model Organisms"
   left:
     - text: "Home"
       href: index.html
