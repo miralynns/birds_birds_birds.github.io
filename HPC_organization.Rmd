@@ -1,0 +1,56 @@
+---
+title: "HPC Working Space"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Folder structure {#folder-structure}
+
+Let's create some new directories in your scratch to organize downstream input and output files.
+In your home directory, create a project folder `tlr_mining`:
+
+```         
+cd /scratch/username/
+mkdir tlr_mining
+```
+
+Then create a folder specifically for the organism you are working on inside `tlr_mining`:
+
+```         
+cd /scratch/username/tlr_mining
+mkdir p_falcon
+```
+
+Change directories to the `p_falcon` folder and we will create a several folders that we will use.
+Here's the list of folders: - genome - sra - Hisat2 - samtools - blast
+
+```         
+mkdir genome sra Hisat2 samtools blast
+```
+
+Use the `tree` command to view your new directories.
+
+# Required Genome Mining Modules
+
+Before we can mine the genome we want to confirm that all required modules are available on the computing cluster.
+It is also important to determine the current version of each module.
+If a module is not available, you will need to work with your HPC systems engineers.
+
+List of required modules:
+
+-   [Samtools](http://www.htslib.org/)
+-   [Trim-Galore](https://github.com/FelixKrueger/TrimGalore "#Trimming-Illumina-Adapters")
+-   [Hisat2](http://daehwankimlab.github.io/hisat2/ "Time to align!")
+-   [Samtools](http://www.htslib.org/ "Visualize aligned reads!")
+-   [Blast](#)
+-   [StringTie](https://github.com/gpertea/stringtie)

@@ -1,0 +1,153 @@
+---
+title: "Slurm Basics"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+High Performance Computing (HPC) platforms generally use a job manager system to ensure equitable access to computing resources for multiple users.
+At Boise State University, the Borah computing cluster runs submitted SBATCH files that use slurm command line.
+In this section, we will breakdown slurm scripts and provide an example.
+
+### Slurm requirements
+
+Slurm scripts have four parts:
+
+1.  **Shebang command** functions to interpret the UNIX commands and run the slurm script.
+    This line of command is required at the top of every slurm script.
+
+    `#!/bin/bash`
+
+2.  **Resource request section** breakdowns the amount of resources required for the job and informs slurm of the job name, RAM requirements, number of CPUs, nodes, and many other parameters explained below.
+
+    ```         
+    #SBATCH -J --job-name
+    #SBATCH -o --output 
+    #SBATCH -p --partition
+    #SBATCH -N --ntasks
+    #SBATCH -n --cpus-per-taks
+    #SBATCH -t --time
+    #SBATCH --mail-type=END
+    #SBATCH --mail-type=BEGIN
+    #SBATCH --mail-type=FAIL
+    #SBATCH --mail-user=EMAIL ADDRESS
+    ```
+
+    `-J`: Name of the job specified by the user.
+
+    `-o`: Output name of the sbatch which is generally the job name followed by `.o%j`.
+
+    `-p`: Partition request for resource allocation.
+    [Borah](https://www.boisestate.edu/rcs/cluster-guides/scheduling-a-job/) specific options are `gpu`, `bsufq`, and `bigmem`.
+
+    `-N`: Number of nodes specified for the job.
+
+    `-n`: Number of CPU cores needed for tasks.
+
+    `-t`: Run time limit for job.
+
+    `--mail-type`: --mail-type is broken into `BEGIN` `END` and `FAIL`.
+    These three lines function to notify the user when the job has started, ended, and/or failed.
+
+    `--mail-user`: user email address is provided to receive job events specified above.
+
+3.  **Dependencies** details that software/modules that are required to run the job steps.
+
+    `module load python`
+
+4.  **Job Step** details the module tasks required for the job.
+
+```         
+`conda active -env`Slurm Parameter Explanations
+```
+
+### Slurm script example
+
+Below is a slurm script example we will be using to download RNA-seq files to the computing cluster.
+
+To make comments in a bash script, we use `##`
+
+```         
+## Shebang
+#!/bin/bash
+
+## RESOURCE REQUEST
+#SBATCH -J slurm_example #job name
+#SBATCH -o log.o%j #log file output will be linked to the job number
+#SBATCH -p bsudfq #CPU node request
+#SBATCH -N 1 #One task specified
+#SBATCH -n 14 #14 CPUs specified fort eh task
+#SBATCH -t 14-00:00:00 #job maximum run time
+#SBATCH --mail-type=END
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=[insert unser EMAIL ADDRESS]
+
+#########################
+##DEPENDENCIES
+# Load Modules: 
+module load bioinformatics/2023-05-04
+module load sratoolkit/2.10.9
+
+##JOB STEPS
+# SRA toolkit:
+fastq-dump -I --split-files SRR13279135
+```
+
+### Creating and submitting a slurm file
+
+It is recommended to write slurm scripts in a text editor and paste when you are ready to create a job file, copy and paste the content into the terminal.
+I recommend using [BBedit](https://www.barebones.com/products/bbedit/).
+
+1.  Log into Borah
+
+2.  Navigate to the scratch directory for your user `cd /scratch/username`
+
+3.  Create a directory for this practice example: `mkdir slurm_practice`
+
+4.  Navigate to the directory you just created: `cd slurm_practice`
+
+5.  Create a job file using the `nano` command: `nano slurm_example`
+
+    -   A text editor area will appear in the terminal (Figure 1). Paste a practice slurm script into the screen from your text editor.
+    -   You are welcome to use my example job file above, but be sure to insert your email address.
+
+    ![Figure 1. Empty nano screen. Nano is a terminal based text editor.](images/Figure_nano_screen.jpg)
+
+6.  When ready to exit the nano screen, hold `CTL+X`.To save press `ENTER` and then `ENTER` again after confirming the name of your file.
+
+7.  Submit your job file using the `sbatch` command: `sbatch slurm_example`
+
+    -   You have successfully submitted your first slurm job file, great job!
+
+    -   If you ran my example above you should receive two emails indicating that your job started and failed.
+
+        -   This job is expected to fail because module versions might have changed and your directory does not contain the files required to run this job. A log file should appear in your slurm_example directory.
+        -   For practice, view the log file using `nano` to see the job error. You can also review the log file using the `less` command.
+
+8.  To check the progress of your job, use the following command: `squeue - u <username>`
+
+    A resulting output will detail parameters of your job from the slurm resource request section, as well as the state of your job and the current job run time.
+
+    Job state codes
+
+    -   `PD - Pending`
+
+    -   `CG - Completing`
+
+    -   `CD - Completed`
+
+    -   `R - Running`
+
+    -   `F - Failed`
+
+9.  If you need to kill a job, use the following command: `scancel <jobid>`
