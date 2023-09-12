@@ -1,0 +1,109 @@
+---
+title: "Identify functional genes of interest in model organism"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+bibliography: references.bib
+---
+
+**Objectives**
+
+-   Identify the target functional genes of interest and a model organism.
+
+-   Search for amino acid sequences of genes in the model organism using the Kyoto Encyclopedia of Genes and Genomes (KEGG) database.
+
+-   Create a FASTA format file of the amino acid sequences.
+
+# Identify functional genes and model organism
+
+For this research workflow example, we selected toll-like receptors as the functional genes of interest.
+Because we are interested in making preliminary observations on the
+
+A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
+For this project, we selected the *Taeniopygia guttata* (Zebra Finch).
+You can learn more about Zebra Finch as a model organism here: [@hauber2021]
+
+# Find functional gene amino acids sequences
+
+For this workflow example, the model organism of interest is *Taeniopygia guttata* (Zebra finch) and the functional genes of interest are toll-like receptors (TLR).
+
+1.  Navigate to the [KEGG Database](https://www.genome.jp/kegg/)
+
+    1.  KEGG is a database of a collection of genes and genomic resources. For more information, or to download, visit [KEGG](https://www.genome.jp/kegg/).
+
+2.  One the Homepage, there is a table, select `KEGG organisms` (Figure 1)
+
+    ![Figure 1. Top portion of KEGG database homepage as of August 2023. Black arrow points to selection for Step 2.](images/KEGG_homepage.jpg){width="641"}
+
+3.  Search for the organism of interest: *Taeniopygia guttata.* If the organism is in the KEGG database, a taxonomy tree will appear on the right side of the screen, and the organism can be selected (Figure 2).
+    Select `tgu`
+
+    ![Figure 2. KEGG organism of taxonomic ranks page as of August 2023. Organism search input area is on the right side of the page. The resulting taxonomy ranks from the search populates on the right side, and the organism of interest can be selected from the table.](images/KEGG_organism_search-01.jpg)
+
+4.  Search for the genes of interest: toll-like receptor (Figure 3).
+
+    ![Figure 3. KEGG Taeniopygia guttata (zebra finch) Genome Information page as of August 2023. Search for genes of interest in the 'search genes' tool area.](images/KEGG_zebra_finch_gene_search-01.jpg)
+
+5.  On the resulting search page, a list of identified genes will populate (Figure 4).
+    Now we are ready to create a FASTA format file.
+
+![Figure 4. KEGG results of toll-like receptor for *Taeniopygia guttata* (zebra finch).](images/Figure_KEGG_TLR_list_results.jpg)
+
+# Create a FASTA file
+
+To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the TLRs identified in the model organism.
+
+FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.
+FASTA files generally start with a left facing bracket `>` followed by the sequence name or some sort of description.
+On the next line the sequence is listed.
+There is a line of space between each sequence and the following sequence ID (Figure 5).
+
+For this part, you will need a text editor.
+Recommended TextEdit app for MacOS or Notepad app for Windows.
+
+1.  Click on the first entry from the GenomeNet page in Step 5 of Part 2.
+
+2.  Open a text editor and input the TLR information for each hit (Figure 5).
+
+    1.  Type a left facing bracket `>` and immediately following the \> start inputting the TLR entry details.
+
+        1.  Example: \>tgu:100216357 K10160 toll-like receptor 4 \| (RefSeq) TLR4; toll-like receptor 4 precursor (A)
+
+            -   KEGG organism code: tgu
+
+            -   Entry Number: 100216357
+
+            -   Name: K10160 toll-like receptor 4 \| (RefSeq) TLR4; toll-like receptor 4 precursor (A)
+
+        2.  Press enter so you are working on a new line, then insert the AA sequence:
+
+            -   Example: MPRRGAPPVGTLLVLLQLAFVPSPLAGCLLDPCLEITPNTTFRCTGLNISGVPDGVPNTT\
+                QNLDLSFSNLKSLGSNYFASVPELQILDLSRCHLHTIEDNSFMDLPRLSTLVLTANSLQH\
+                LGKAAFYGLTSLKKLVLVETNRTSLSELPIGHLHTLQELNLGHNSITSLKLPKYFTNMTS\
+                LRLLSFSSNKITSISRGDLDALREGNRLNLTLVLSLNNIKSIEPGAFAGIHLAELALRSA\
+                FEKPTMQTALQGLAGLQVSRLIVGEFRNIERLQDFEGRLLDGLCQVQMEEFVLICLRGFK\
+                DDTDTLFNCVGNVSTIRLVDLGLKEISQVPVWSKVRQLECKKCHFEDVPAQKLSLFKELR\
+                VLRINDNRNLKTFEHKFKGLSNLEVIDLSENRLTFSSCCSPQFQNCPNLKHLNLSFNSNI\
+                RLTGDFTNVKNLLYLDLQHTTLFGPGSYPVFLSLQRLIYLDISYTKTEVKSQCTFCGLNS\
+                LQVLKMAGNSFADNKLANNFKNLSHLHTLDISSCKLEHVDQSTFDALSELKELNISNNKL\
+                MTFDPVVYQPLQALRVLDFSRNQLAVLLDPARXILPDSLVLLDISQNLFDCSCVYLDFLK\
+                WVKEKQELLQNEELMLCHTPSYVANXSLPSFDLSSCHISAGQVASPVVVLFCVVVFLFLV\
+                YRYYFQLYYSMVLLSGCKHYAERGDTYDAFVIHSSKDQEWVMKELVEPLEGGTPRFRLCL\
+                YYRDFLPGVPIVTNIIEEGFLSSRNVIAVISADFLQSKWCSFEFDIAQSWQLVEGKAGLI\
+                MIVLEDVNKALLRQRLGLSRYLRRNTYLEWKNKEISKHIFWRQLIGVLLEGKNWNHEEXK\
+                LM
+
+                ![Figure 5. Example of text editor layout for amino acid sequences of toll-like receptors of the Zebra Finch. Data collected from KEGG database.](images/FIGURE_FASTA_example.jpg)
+
+3.  Save your text file and convert to a fasta.
+
+    -   OS: In finder right click on the file and select 'Get Info'. Under Name & Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ' Use .fasta'

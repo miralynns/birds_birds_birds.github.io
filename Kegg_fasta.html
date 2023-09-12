@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Identify functional genes of interest in model organism</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Manual Annotation of Functional Genes in Non-Model Organisms</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Getting_Started.html">Scan Raw Data</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Identify functional genes of interest in model organism</h1>
+
+</div>
+
+
+<p><strong>Objectives</strong></p>
+<ul>
+<li><p>Identify the target functional genes of interest and a model organism.</p></li>
+<li><p>Search for amino acid sequences of genes in the model organism using the Kyoto Encyclopedia of Genes and Genomes (KEGG) database.</p></li>
+<li><p>Create a FASTA format file of the amino acid sequences.</p></li>
+</ul>
+<div id="identify-functional-genes-and-model-organism" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Identify functional genes and model organism</h1>
+<p>For this research workflow example, we selected toll-like receptors as the functional genes of interest.
+Because we are interested in making preliminary observations on the</p>
+<p>A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
+For this project, we selected the <em>Taeniopygia guttata</em> (Zebra Finch).
+You can learn more about Zebra Finch as a model organism here: <span class="citation">(<a href="#ref-hauber2021" role="doc-biblioref">Hauber, Louder, and Griffith 2021</a>)</span></p>
+</div>
+<div id="find-functional-gene-amino-acids-sequences" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Find functional gene amino acids sequences</h1>
+<p>For this workflow example, the model organism of interest is <em>Taeniopygia guttata</em> (Zebra finch) and the functional genes of interest are toll-like receptors (TLR).</p>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the <a href="https://www.genome.jp/kegg/">KEGG Database</a></p>
+<ol style="list-style-type: decimal">
+<li>KEGG is a database of a collection of genes and genomic resources. For more information, or to download, visit <a href="https://www.genome.jp/kegg/">KEGG</a>.</li>
+</ol></li>
+<li><p>One the Homepage, there is a table, select <code>KEGG organisms</code> (Figure 1)</p>
+<div class="figure">
+<img src="Images/KEGG_homepage.jpg" width="641" alt="" />
+<p class="caption">Figure 1. Top portion of KEGG database homepage as of August 2023. Black arrow points to selection for Step 2.</p>
+</div></li>
+<li><p>Search for the organism of interest: <em>Taeniopygia guttata.</em> If the organism is in the KEGG database, a taxonomy tree will appear on the right side of the screen, and the organism can be selected (Figure 2).
+Select <code>tgu</code></p>
+<div class="figure">
+<img src="Images/KEGG_organism_search-01.jpg" alt="" />
+<p class="caption">Figure 2. KEGG organism of taxonomic ranks page as of August 2023. Organism search input area is on the right side of the page. The resulting taxonomy ranks from the search populates on the right side, and the organism of interest can be selected from the table.</p>
+</div></li>
+<li><p>Search for the genes of interest: toll-like receptor (Figure 3).</p>
+<div class="figure">
+<img src="Images/KEGG_zebra_finch_gene_search-01.jpg" alt="" />
+<p class="caption">Figure 3. KEGG Taeniopygia guttata (zebra finch) Genome Information page as of August 2023. Search for genes of interest in the ‘search genes’ tool area.</p>
+</div></li>
+<li><p>On the resulting search page, a list of identified genes will populate (Figure 4).
+Now we are ready to create a FASTA format file.</p></li>
+</ol>
+<div class="figure">
+<img src="Images/Figure_KEGG_TLR_list_results.jpg" alt="" />
+<p class="caption">Figure 4. KEGG results of toll-like receptor for <em>Taeniopygia guttata</em> (zebra finch).</p>
+</div>
+</div>
+<div id="create-a-fasta-file" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Create a FASTA file</h1>
+<p>To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the TLRs identified in the model organism.</p>
+<p>FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.
+FASTA files generally start with a left facing bracket <code>&gt;</code> followed by the sequence name or some sort of description.
+On the next line the sequence is listed.
+There is a line of space between each sequence and the following sequence ID (Figure 5).</p>
+<p>For this part, you will need a text editor.
+Recommended TextEdit app for MacOS or Notepad app for Windows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on the first entry from the GenomeNet page in Step 5 of Part 2.</p></li>
+<li><p>Open a text editor and input the TLR information for each hit (Figure 5).</p>
+<ol style="list-style-type: decimal">
+<li><p>Type a left facing bracket <code>&gt;</code> and immediately following the &gt; start inputting the TLR entry details.</p>
+<ol style="list-style-type: decimal">
+<li><p>Example: &gt;tgu:100216357 K10160 toll-like receptor 4 | (RefSeq) TLR4; toll-like receptor 4 precursor (A)</p>
+<ul>
+<li><p>KEGG organism code: tgu</p></li>
+<li><p>Entry Number: 100216357</p></li>
+<li><p>Name: K10160 toll-like receptor 4 | (RefSeq) TLR4; toll-like receptor 4 precursor (A)</p></li>
+</ul></li>
+<li><p>Press enter so you are working on a new line, then insert the AA sequence:</p>
+<ul>
+<li><p>Example: MPRRGAPPVGTLLVLLQLAFVPSPLAGCLLDPCLEITPNTTFRCTGLNISGVPDGVPNTT<br />
+QNLDLSFSNLKSLGSNYFASVPELQILDLSRCHLHTIEDNSFMDLPRLSTLVLTANSLQH<br />
+LGKAAFYGLTSLKKLVLVETNRTSLSELPIGHLHTLQELNLGHNSITSLKLPKYFTNMTS<br />
+LRLLSFSSNKITSISRGDLDALREGNRLNLTLVLSLNNIKSIEPGAFAGIHLAELALRSA<br />
+FEKPTMQTALQGLAGLQVSRLIVGEFRNIERLQDFEGRLLDGLCQVQMEEFVLICLRGFK<br />
+DDTDTLFNCVGNVSTIRLVDLGLKEISQVPVWSKVRQLECKKCHFEDVPAQKLSLFKELR<br />
+VLRINDNRNLKTFEHKFKGLSNLEVIDLSENRLTFSSCCSPQFQNCPNLKHLNLSFNSNI<br />
+RLTGDFTNVKNLLYLDLQHTTLFGPGSYPVFLSLQRLIYLDISYTKTEVKSQCTFCGLNS<br />
+LQVLKMAGNSFADNKLANNFKNLSHLHTLDISSCKLEHVDQSTFDALSELKELNISNNKL<br />
+MTFDPVVYQPLQALRVLDFSRNQLAVLLDPARXILPDSLVLLDISQNLFDCSCVYLDFLK<br />
+WVKEKQELLQNEELMLCHTPSYVANXSLPSFDLSSCHISAGQVASPVVVLFCVVVFLFLV<br />
+YRYYFQLYYSMVLLSGCKHYAERGDTYDAFVIHSSKDQEWVMKELVEPLEGGTPRFRLCL<br />
+YYRDFLPGVPIVTNIIEEGFLSSRNVIAVISADFLQSKWCSFEFDIAQSWQLVEGKAGLI<br />
+MIVLEDVNKALLRQRLGLSRYLRRNTYLEWKNKEISKHIFWRQLIGVLLEGKNWNHEEXK<br />
+LM</p>
+<div class="figure">
+<img src="Images/FIGURE_FASTA_example.jpg" alt="" />
+<p class="caption">Figure 5. Example of text editor layout for amino acid sequences of toll-like receptors of the Zebra Finch. Data collected from KEGG database.</p>
+</div></li>
+</ul></li>
+</ol></li>
+</ol></li>
+<li><p>Save your text file and convert to a fasta.</p>
+<ul>
+<li>OS: In finder right click on the file and select ‘Get Info’. Under Name &amp; Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ’ Use .fasta’</li>
+</ul></li>
+</ol>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hauber2021" class="csl-entry">
+Hauber, Mark E, Matthew IM Louder, and Simon C Griffith. 2021. <span>“Neurogenomic Insights into the Behavioral and Vocal Development of the Zebra Finch.”</span> <em>eLife</em> 10 (June). <a href="https://doi.org/10.7554/elife.61849">https://doi.org/10.7554/elife.61849</a>.
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
