@@ -1,5 +1,5 @@
 ---
-title: "Downloading Data"
+title: "Transferring Data to HPC Cluster"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
@@ -18,41 +18,58 @@ Now that we have organized directories on a cluster, we will move the required f
 
 **Required Files**:
 
--   Genome of non-model organism
+-   Genome of non-model species
 
 -   FASTA file of functional genes of interest (created using the KEGG database)
 
 -   RNA sequence data
 
-# Genome of Non-model Organism
+# Genome of Non-model species
 
-Identify and download genomes using the [NCBI Database](https://www.ncbi.nlm.nih.gov/datasets/taxonomy/8954/)
+1.  Identify the non-model species genome using the [NCBI Database](https://www.ncbi.nlm.nih.gov/datasets/taxonomy/8954/)
 
-For this project, we downloaded the [*Falco peregrinus* genome](https://www.ncbi.nlm.nih.gov/datasets/taxonomy/8954/)
+    -   For this example, the [*Falco peregrinus* reference genome](https://www.ncbi.nlm.nih.gov/datasets/taxonomy/8954/) was used.
 
-We want to use the `.fna.gz` file.
-Move the genome to the genome directory on your computing cluster using `scp`
+2.  Once on the reference genome page, click the 'DOWNLOAD' option (Figure 1.A).
+    On the resulting window, select three download options (Figure 1.B):
+
+    1.  Genome Sequences (FASTA)
+
+    2.  Annotation features (GTF)
+
+    3.  Annotation features (GFF)
+
+        ![Figure 1. Genome file downloading options for the Falco peregrinus reference genome as of August 2023. Image A highlights where to click to download. Image B highlights required files to download.](images/Slide1%203.jpg)
+
+3.  Move all the downloaded genome files into a project folder on the home computer.
+
+    1.  These three files will be needed for the manual annotation process in Geneious after the genome has been mined, but for now the `.fna.gz` file will need to be transferred onto the computing cluster. It is recommended to use `scp` for this step.
+
+4.  Open a new terminal shell and input the scp command.
+    A password will be required to access the files through the HPC before the transfer can begin.
 
 ```         
 scp <user:/current/path/to/file> <user:/location/where/you/would/like/to/move/file/to>
 ```
 
-In my example below, I transferred all files to my genome folder using the `*` option.
+In the example below, all downloaded genome files were transferred to the genome directory using the wildcard `*` option.
 This option gathers all files that start with that prefix:
 
 ```         
-scp /Users/mirandastriluk/Downloads/GCF_023634155.1_bFalPer1.pri_genomic.* mstriluk@borah-login.boisestate.edu:/bsuscratch/mstriluk/tlr_mining/p_falcon/genome
+scp /Users/username/Downloads/GCF_023634155.1_bFalPer1.pri_genomic.* HPC-criteria:/scratch/username/tlr_mining/p_falcon/genome
 ```
 
-# FASTA file
+# Genes of Interest
 
-Next I moved the fasta file we created from the KEGG database into my blast directory.
+1.  Transfer the fasta file created from the KEGG database into the blast directory:
 
 ```         
-scp /Users/mirandastriluk/Downloads/Zebra_Finch_TLRs.fasta mstriluk@borah-login.boisestate.edu:/bsuscratch/mstriluk/tlr_mining/p_falcon/blast
+scp /Users/username/Downloads/Zebra_Finch_TLRs.fasta HPC-criteria:/scratch/username/tlr_mining/p_falcon/blast
 ```
 
-Depending on the available space on your computer and institutional options, other file upload options could include `wget` and [Globus](https://www.globus.org/data-transfer).
+2.  Login to the HPC and confirm files have been transferred to the appropriate directories.
+
+    *Depending on the available space on your computer and institutional options, other file upload options could include `wget` and [Globus](https://www.globus.org/data-transfer).*
 
 # RNA sequence data
 
