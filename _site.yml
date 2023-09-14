@@ -1,18 +1,20 @@
-name: "Manual Annotation of Functional Genes in Non-model Organisms"
+name: "Manual Annotation of Functional Genes in Non-Model Species"
 output_dir: "."
 navbar:
-  title: "Manual Annotation of Functional Genes in Non-model Organisms"
+  title: "Manual Annotation of Functional Genes in Non-Model Species"
   left:
     - text: "Home"
       href: index.html
-    - text: "Organize Workspace"
+    - text: "1. Command line Basics"
       href: HPC_organization.html
-    - text: "Slurm Basics"
+    - text: "2. Slurm Basics"
       href: slurm_basics.html
-    - text: "Identify Functional Genes of Interest"
+    - text: "3. Identify Functional Genes"
       href: Kegg_fasta.html
-    - text: "Uploading Data to the Cluster"
+    - text: "4. Transfer Data to the Cluster"
       href: Data_Download.html
-    - text: "Gene Mining with Linux/Unix command line"
-      href: genome_mining.html
+    - text: "5. Mine the Genome using the UNIX shell"
+      href: Genome_mining.html
+    - text: "6. Annotate the Genome using Geneious"
+      href: geneious_annoataion.html
       
