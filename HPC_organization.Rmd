@@ -1,5 +1,5 @@
 ---
-title: "HPC Working Space"
+title: "Organize HPC Cluster Workspace"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
@@ -14,10 +14,14 @@ editor_options:
     wrap: sentence
 ---
 
+If you are new to UNIX/LINUX command line, it is recommended to work through the Software Carpentry Tutorial: [The Unix Shell](https://swcarpentry.github.io/shell-novice/) and review this [Unix Cheat Sheet](https://cambiotraining.github.io/hpc-intro/99-unix_cheatsheet.html) created by the University of Cambridge Bioinformatics Training Facility.
+
+Once you are confident navigating around your cluster works pace you will want to create folders for the UNIX/LINUX genome mining process and confirm the modules required are available on your HPC cluster.
+
 # Folder structure {#folder-structure}
 
 Let's create some new directories in your scratch to organize downstream input and output files.
-In your home directory, create a project folder `tlr_mining`:
+In the home directory, create a project folder `tlr_mining`:
 
 ```         
 cd /scratch/username/
@@ -42,9 +46,9 @@ Use the `tree` command to view your new directories.
 
 # Required Genome Mining Modules
 
-Before we can mine the genome we want to confirm that all required modules are available on the computing cluster.
+Before one can mine the genome, confirm that all required modules are available on the computing cluster.
 It is also important to determine the current version of each module.
-If a module is not available, you will need to work with your HPC systems engineers.
+If a module is not available, work with the HPC systems engineers.
 
 List of required modules:
 
