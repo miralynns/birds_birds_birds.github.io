@@ -1,5 +1,5 @@
 ---
-title: "Identify functional genes of interest in model organism"
+title: "Identify functional genes of interest in a model species"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
@@ -12,7 +12,6 @@ fontsize: 12pt
 editor_options: 
   markdown: 
     wrap: sentence
-bibliography: references.bib
 ---
 
 **Objectives**
@@ -26,7 +25,6 @@ bibliography: references.bib
 # Identify functional genes and model organism
 
 For this research workflow example, we selected toll-like receptors as the functional genes of interest.
-Because we are interested in making preliminary observations on the
 
 A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
 For this project, we selected the *Taeniopygia guttata* (Zebra Finch).
