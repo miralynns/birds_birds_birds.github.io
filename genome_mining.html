@@ -11,7 +11,7 @@
 
 
 
-<title>Mining genome using Linux/Unix Command Line</title>
+<title>Mine the Genome using Linux/Unix Command Line</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,7 +313,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Manual Annotation of Functional Genes in Non-Model Organisms</a>
+      <a class="navbar-brand" href="index.html">Manual Annotation of Functional Genes in Non-Model Species</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -321,7 +321,22 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="Getting_Started.html">Scan Raw Data</a>
+  <a href="HPC_organization.html">1. Command line Basics</a>
+</li>
+<li>
+  <a href="slurm_basics.html">2. Slurm Basics</a>
+</li>
+<li>
+  <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
+</li>
+<li>
+  <a href="Data_Download.html">4. Transfer Data to the Cluster</a>
+</li>
+<li>
+  <a href="Genome_mining.html">5. Mine the Genome using the UNIX shell</a>
+</li>
+<li>
+  <a href="geneious_annoataion.html">6. Annotate the Genome using Geneious</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -335,43 +350,53 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mining genome using Linux/Unix Command Line</h1>
+<h1 class="title toc-ignore">Mine the Genome using Linux/Unix Command Line</h1>
 
 </div>
 
 
-<p>Now we are ready to mine the genome!</p>
-<p>In this section, I have broken down each module and provided an example of the slurm script dependencies and job steps with some explanations.
-Be sure to include the shebang and resource request portions of the slurm file prior to submitting a job.</p>
-<p>To mine the genome, submit jobs for each required module in the following order.
-Some modules will take longer than others to run.
-Confirm each job has completed successfully before moving onto the next.</p>
-<p>If a job fails to run, review the log file using the <code>nano</code> or <code>less</code> command.
-and troubleshoot accordingly.</p>
+<p><strong>Now we are ready to mine the genome!</strong></p>
+<p>In this section, each step is listed in the order you should proceed.
+Examples of the slurm script dependencies and job steps explanations are provided, but be sure to include the shebang and resource request portions of the slurm file prior to submitting a job.</p>
+<p>Some modules will take longer than others to run.
+Examples of output files are also provided, so you can confirm necessary output files are resulting from each step.
+Confirm each job has completed successfully before moving onto the next.
+It is recommended to review files last edited time and sizing using <code>ls -lht</code>.</p>
+<p>If a job fails to run or if the file sizes are empty or suspiciously low, review the log file using the <code>nano</code> or <code>less</code> command and troubleshoot accordingly.</p>
 <div id="trim-galore" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Trim Galore:</h1>
+<h1><span class="header-section-number">1</span> Trim Galore</h1>
 <p>TrimGalore is used to trim the Illumina adapters from the RNA-seq data.
-You will need to identify the file names of the RNA-seq data downloaded from the SRA Toolkit step.</p>
-<div id="trimgalore-slurm-script-example" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> TrimGalore slurm script example</h2>
+Be sure to identify the file names of the RNA-seq data downloaded from the SRA Toolkit step.
+Trim Galore is run using bioconda, so activating an environment was required for this module.</p>
+<div id="slurm-script-example" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Slurm script example</h2>
 <pre><code># Sort path:
 datapath=/scratch/username/tlr_mining/gyrfalcon/sra
 
 # Module load
-
 . ~/.bashrc  # this line sources your bashrc
 conda activate trimgalore-env
 trim_galore --paired --illumina SRR21639343_1.fastq SRR21639343_2.fastq</code></pre>
-<div id="trimgalore-options-explanation" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> TrimGalore Options Explanation</h3>
+<div id="dependencies-explanation" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Dependencies Explanation</h3>
+<pre><code>-- paired: identifies that they SRA files are paired end sequencing reads and the files are identified with the _1 and _2 at the end of the respective file names.
+-- illumina: identifies that illumina sequencing adapters are present and will be trimmed from the reads.</code></pre>
+<div id="output-files" class="section level4" number="1.1.1.1">
+<h4><span class="header-section-number">1.1.1.1</span> Output files</h4>
+<p>Four files should appear in the sra directory when this process is complete:</p>
+<ul>
+<li><p>Two <strong>trimming_report.txt</strong> files (one for each sra file)</p></li>
+<li><p>A <strong>val_1.fq</strong> and <strong>val_2.fq</strong> file for each sra file, indicating they are the results of the adapter trimming process.</p></li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="hisat-2" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Hisat 2:</h1>
-<p>Run the <a href="http://daehwankimlab.github.io/hisat2/">hisat2 aligner</a> to align the adapter-trimmed RNA-seq data to the Peregrine Falcon reference <a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/8954/">genome</a></p>
-<div id="hisat2-slurm-script-example" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> hisat2 slurm script example</h2>
+<h1><span class="header-section-number">2</span> Hisat 2</h1>
+<p>Run <a href="http://daehwankimlab.github.io/hisat2/">hisat2 aligner</a> to align the adapter-trimmed RNA-seq data to the reference genome of the non-model species.</p>
+<div id="slurm-script-example-1" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Slurm script example</h2>
 <pre><code># Load modules:
 
 module load python/3.9.7
@@ -379,33 +404,38 @@ module load hisat2/2.2.1
 module load samtools/1.14
 
 # Sort Paths:
-HiSatSam=/scratch/username/tlr_mining/p_falcon/hisat_SAM
+HiSatSam=/scratch/username/tlr_mining/p_falcon/hisat2
 RNAseq=/scratch/username/tlr_mining/p_falcon/sra
 genome=/scratch/username/tlr_mining/p_falcon/genome
 
 # Hisat 2:
 hisat2-build -p 20 ${genome}/GCF_023634155.1_bFalPer1.pri_genomic.fna ${genome}/bFalPer1.pri /
 hisat2 -q --phred33 --no-unal -p 20 -x ${genome}/bFalPer1.pri -1 ${RNAseq}/SRR13279135_1_val_1.fq -2 ${RNAseq}/SRR13279135_2_val_2.fq -S ${HiSatSam}/bFalPer1.pri_align.sam</code></pre>
-<div id="hisat2-options-explanation" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Hisat2 Options Explanation</h3>
+<div id="dependencies-explanation-1" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Dependencies Explanation</h3>
 <pre><code>- Phred33: quality threshold
 - p: number of processors available 
 - x: genome_name for the index that we just created 
 - 1: read.1.fq read.2.fq (specify read files) 
 - S: provide a name for an output file in *.sam format</code></pre>
+<div id="output-file" class="section level4" number="2.1.1.1">
+<h4><span class="header-section-number">2.1.1.1</span> Output file</h4>
+<p>In the Hisat2 directory, one file should appear as the result and indicated in the -S option dependencies.
+This file should be in <strong>.sam</strong> format.</p>
+</div>
 </div>
 </div>
 </div>
 <div id="samtools" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Samtools</h1>
-<p>We will use three XXX of <a href="http://www.htslib.org/doc/samtools.html">samtools</a> to select the aligned reads we want to visualize on the reference.</p>
+<p>Three packages of <a href="http://www.htslib.org/doc/samtools.html">samtools</a> are used to select the aligned reads we want to visualize on the reference.</p>
 <ul>
 <li><p><strong>Samtools view</strong> will keep only the reads that align well and align in their primary alignment position.</p></li>
 <li><p><strong>Samtools sort</strong> is used when further subsetting alignment reads by reads aligning by one particular contig or chromosome versus another.</p></li>
 <li><p><strong>Samtools index</strong> assists in downstream sub setting and calculating expression of the genes of interest.</p></li>
 </ul>
-<div id="samtools-slurm-script-example" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> samtools slurm script example:</h2>
+<div id="slurm-script-example-2" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Slurm script example</h2>
 <pre><code># Load modules:
 module load python/3.9.7
 module load samtools/1.14
@@ -418,21 +448,41 @@ samtools=/scratch/username/tlr_mining/p_falcon/samtools
 samtools view -b -@ 20 -f 3 -F 256 -q 40 ${HiSatSam}/bFalPer1.pri_align.sam &gt; ${samtools}/bFalPer1.pri_align.bam 
 samtools sort -@ 16 ${samtools}/bFalPer1.pri_align.bam &gt; ${samtools}/bFalPer1.pri_align_sorted.bam 
 samtools index -b ${samtools}/bFalPer1.pri_align_sorted.bam</code></pre>
-<div id="samtools-options-explanation" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Samtools Options Explanation</h3>
+<div id="dependencies-explanation-2" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Dependencies Explanation</h3>
 <pre><code>- b: adjust output format
 - @: number of processors
 - q: subsetting based on quality of alignmnet (40 is high quality map from read to genome)
 - f: reads to include (3: both ends of paired end reads to map and on same scaffold)
 - F: reads to exclude (256: not primary alignment - only keep primary alignment)
 - output: bam file (binary alignment file required for Geneious)</code></pre>
+<div id="output-files-1" class="section level4" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> Output Files</h4>
+<p>In the samtools directory, three files should appear as indicated in the output options from the slurm script.
+Files should have the three following formats:</p>
+<ol style="list-style-type: decimal">
+<li><p>align.bam</p></li>
+<li><p>align_sorted.bam</p></li>
+<li><p>align_sorted.bam.bai</p></li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div id="blast" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> BLAST</h1>
+<p><a href="https://www.metagenomics.wiki/tools/blast">BLAST</a> is a software tool that allows users to search the <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">NCBI database</a> for similar nucleotide or protein sequences.
+In this section, we will complete steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make a database of functional genes of interest from the reference genome of the non-model organism identified using the fasta file created of function genes of interest identified in the model organism.
+Completed using <code>makeblastdb</code>.</p></li>
+<li><p>Search translated nucleotide databases for the protein sequences of the function genes of interest.
+Completed using <code>tblastn</code>.</p></li>
+<li><p>Use the subsetted aligned reads from samtools with the database of matches identified from step 2 to identify which contigs of the reference genome of the model organism have the functional genes of interest.
+For this step we will run the processing in parallel using <code>rb-parrell</code>, which requires bioconda.</p></li>
+</ol>
 <div id="blast-slurm-script-example" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> blast slurm script example:</h2>
+<h2><span class="header-section-number">4.1</span> BLAST slurm script example</h2>
 <pre><code># Module load - Activate python environment
 . ~/.bashrc
 conda activate blast-env 
@@ -453,13 +503,77 @@ tblastn -db ${data}/bFalPer1.pri_genomeDB -query ${data}/Zebra_Finch_TLRs.fasta 
 
 cut -f2 ${data}/bFalPer1.pri_TLR_blastn.out | sort | uniq &gt; ${data}/Pfalcon_TLR_contig.txt
 cat ${data}/Pfalcon_TLR_contig.txt | parallel &quot;samtools view -bh ${bam}/bFalPer1.pri_align_sorted.bam {} &gt; {}.bam&quot;</code></pre>
+<div id="blast-dependencies-explanation" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> BLAST Dependencies Explanation</h3>
+<pre><code>Step 1: makeblastdb
+- in: reference genome of non-model species
+- dbtype: nucleic acid (nucl) or protein (prot) sequences specified
+- out: user determined file name for the output database created
+
+Step 2: tblastn
+- db: database created from the makeblastdb job
+- query: functional genes identified from the KEGG database
+- out: user determined file name for the output
+- outfmt 6: blast iudentified output format 6. User has option to make their own format
+- num_threads: dependent upon computing capacity, but providing a value can speed up the module running process
+- evalue: specifies the number of hits of similar quality. Lower evalue means less hits but higher score. Higher evalue means more hits, but lower score.
+
+Step 3:</code></pre>
+<div id="output-files-2" class="section level4" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> Output Files</h4>
+<p>Many files will be created from this model.
+Output names were identified in the slurm file, but a general list is detailed below.</p>
+<ul>
+<li><p>A set of nine <strong>_genomeDB</strong> files with multiple file formats will be created.</p></li>
+<li><p><strong>blastn.out</strong> file contains XXX.
+<em>This file will be needed for the manual annotation process in Geneious.</em></p></li>
+<li><p><strong>contig.txt</strong> file contains a list of contigs that have been identified to have the functional genes of interest present.
+<em>This file will be needed for the manual annotation process in Geneious.</em></p></li>
+<li><p>A set of <strong>.bam</strong> files will be present.
+The number of <strong>.bam</strong> files will vary, but should align with the number of contigs identified in the <strong>contig.txt</strong> file.
+<em>These files will be needed for the manual annotation process in Geneious.</em></p></li>
+</ul>
 </div>
 </div>
-<div id="stringtie" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Stringtie:</h1>
-<p>Stringtie is run on the whole genome, not the output from the samtools view step.</p>
-<div id="stringtie-slurm-script-example" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> stringtie slurm script example:</h2>
+</div>
+</div>
+<div id="subsetting" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Subsetting</h1>
+<p>In the BLAST step, a set of <strong>.bam</strong> files were created for each contig that has been identified to contain the functional genes of interest.
+Once ready, these files will be exported to the desktop and imported into Geneious.</p>
+<p>Some of these files are can be incredibly large and if the home computer has limited storage and ram, subsetting the files can be helpful for saving space and computational power.
+Review file sizes using <code>ls -lht</code> in the blast directory to determine which files need to be subset.</p>
+<p>Samtools view will be used for subsetting and in this example, the goal file size of 250 mb.</p>
+<p>In the example below, the original file was ~500 mb and the file was subset by 50% (0.05) to reduce the size to ~250 mb.
+Generally, not all files require subsetting, but a loop could be created for this process as a learning challenge!</p>
+<div id="slurm-script-example-3" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Slurm script example</h2>
+<pre><code># Load module:
+module load samtools/1.14
+
+# Sort paths:
+HiSatSam=/scratch/username/tlr_mining/p_falcon/blast
+
+#samtools
+samtools view -s 0.50 -b NC_051190.1.bam &gt; NC_051190.1_0.050_subset.bam</code></pre>
+<div id="dependencies-explanations" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Dependencies Explanations</h3>
+<pre><code>- s: is the amount to subset the bam file
+- b: input bam file to be subset
+- &gt;: user determined name of the output subset bam file; it is recommended to detail the amount the file was subset by.</code></pre>
+<div id="output-files-3" class="section level4" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Output Files</h4>
+<p>A single subset.bam file should be created depending on the user determined output name.
+Use <code>ls -lht</code> to confirm goal file size was met.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="stringtie" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Stringtie</h1>
+<p>Stringtie assembles RNA-sequencing reads to transcripts, and is run on the whole genome, not the output from the samtools view step.</p>
+<div id="slurm-script-example-4" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> slurm script example</h2>
 <pre><code># Load modules:
 module load stringtie/2.1.4
 
@@ -468,13 +582,37 @@ data=/scratch/username/tlr_mining/p_falcon/samtools
 
 # Stringtie
 stringtie -p 24 -o pfal_stringtie_out.gtf ${data}/bFalPer1.pri_align_sorted.bam</code></pre>
-<div id="explanation" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Explanation</h3>
+<div id="dependencies-explanation-3" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Dependencies Explanation</h3>
 <pre><code>- p: number of processors
 - o: output file name option
 - input file: can be SAM, BAM, or CRAN rna-seq align and sorted file. This is created in the samtools step. </code></pre>
+<div id="output-file-1" class="section level4" number="6.1.1.1">
+<h4><span class="header-section-number">6.1.1.1</span> Output File</h4>
+<p>A file with the ending <strong>stringtie_out.gtf</strong> will be present in the samtools directory.
+<em>This file will be needed for the manual annotation process in Geneious.</em></p>
 </div>
 </div>
+</div>
+</div>
+<div id="secure-copy-files" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Secure Copy Files</h1>
+<p>Now the genome has been mined and resulting files need to be securely transferred from the cluster to the home computer.
+For this step, <code>scp</code> is recommended. Review the data download section for a <code>scp</code> use refresher.</p>
+<p>The following files are to be transferred to the home computer:</p>
+<ul>
+<li><p>stringtie directory</p>
+<ul>
+<li>stringtie_out.gtf file</li>
+</ul></li>
+<li><p>blast directory</p>
+<ul>
+<li><p>All the .bam files.
+If files were subset, do not download the original file, just the subset file.</p></li>
+<li><p>contig.txt file</p></li>
+<li><p>blastn.out file</p></li>
+</ul></li>
+</ul>
 </div>
 
 
