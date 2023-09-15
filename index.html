@@ -11,7 +11,7 @@
 
 
 
-<title>Genomics Workflow</title>
+<title>Manual Annotation of Functional Genes in Non-Model Species</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,32 +313,34 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Genomics Workflow</a>
+      <a class="navbar-brand" href="index.html">Manual Annotation of Functional Genes in Non-Model Species</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-    <a href="index.html">Home</a>
+  <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="HPC_organization.html">Organize Cluster Workspace</a>
+  <a href="HPC_organization.html">1. Command line Basics</a>
 </li>
 <li>
-  <a href="slurm_basics.html">Slurm Basics</a>
+  <a href="slurm_basics.html">2. Slurm Basics</a>
 </li>
 <li>
-  <a href="Kegg_fasta.html">Identify Functional Genes of Interest</a>
+  <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
 </li>
 <li>
-  <a href="Data_Download.html">Uploading Data to the Cluster</a>
+  <a href="Data_Download.html">4. Transfer Data to the Cluster</a>
 </li>
 <li>
-  <a href="Assembly_Statistics.html">Assembly Statistics</a>
+  <a href="Genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="genome_mining.html">Gene Mining with Linux/Unix command line</a>
+  <a href="geneious_annoataion.html">6. Annotate the Genome using Geneious</a>
+</li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">  
+      <ul class="nav navbar-nav navbar-right">
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -348,36 +350,70 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Genomics Workflow</h1>
+<h1 class="title toc-ignore">Manual Annotation of Functional Genes in Non-Model Species</h1>
 
 </div>
 
 
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
 });
 </script>
-<p><img src="Images/GEM3_nov5_logo.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="vision-statement" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Vision Statement</h1>
-<p>This genomics workflow was created by Idaho EPSCoR <a href="https://www.idahogem3.org">GEM3</a> participants and attendees of the 2023 Smithsonian School of Conservation Bioinformatics Analysis of Conservation Genomics Workshop with George Mason University through support of GEM3. The purpose of this workflow module is to share what was learned in this workshop and build capacity in conservation genomics and bioinformatics.</p>
+<p>This genome annotation workflow was created by Idaho EPSCoR <a href="https://www.idahogem3.org">GEM3</a> participants.
+The purpose of this workflow module is to share resources and processes for genome annotation using publicly available data.</p>
 </div>
 <div id="what-will-be-covered" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> What Will Be Covered?</h1>
-<p>Please follow this workflow to learn about how to process raw genomic resequencing data, as well as downstream analysis options. Further downstream analyses are captured in the following repository: <a href="https://github.com/Gem3Genomics/Genomics_Downstream_Analyses">GEM3Genomics/Genomics_Downstream_Analyses</a>.</p>
-<p><strong>Disclaimer: This workflow was developed in March 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.</strong></p>
+<p>Over the last decade, affordable access to sequencing platforms has expanded the availability of quality genomic datasets in publicly available repositories.
+The challenge is no longer sequencing, but the manual and computational effort to sift through these repositories to mine and analyze available genomes.</p>
+<p>This workflow aims to provide a template for individuals to manually annotate genes of interest from non-model species using publicly available genomic data.
+To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in <em>Falco peregrinus</em>.</p>
+<p><strong>Disclaimer: This workflow was developed in August 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.</strong></p>
 </div>
 <div id="what-is-required" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> What Is Required?</h1>
-<p>You will need access to an High Performance Computing (HPC) machine, as well as R for downstream analyses. Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution’s HPC will also be necessary.</p>
+<p>You will need access to an High Performance Computing (HPC) machine, <a href="https://www.geneious.com/">Geneious software</a>, and R for downstream analyses.
+Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution’s HPC will also be necessary.</p>
 </div>
-<div id="acknowledgements" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Acknowledgements</h1>
-<p>This module was made possible by the NSF Idaho EPSCoR Program and by the National Science Foundation under award number OIA-1757324. Special thanks to the <a href="https://smconservation.gmu.edu">Smithsonian-Mason School of Conservation</a> and its instructors for this teaching this material.</p>
+<div id="workflow-process" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Workflow Process</h1>
+<p>Use the upper navigation tabs in the following order:</p>
+<ol style="list-style-type: decimal">
+<li><p>Command line basics</p>
+<ol style="list-style-type: decimal">
+<li><p>Learn of Refresh on command line basics with a tutorial</p></li>
+<li><p>Organize your cluster work space</p></li>
+<li><p>Confirm required mining modules are available on your institutions HPC.</p></li>
+</ol></li>
+<li><p>Slurm Basics</p>
+<ul>
+<li><p>Review a quick breakdown of slurm command line for submission of SBATCH files.</p></li>
+<li><p>If your HPC uses a different job managing system, review alternative criteria specific to your institution.</p></li>
+</ul></li>
+<li><p>Identify functional genes of interest in model species</p>
+<ul>
+<li><p>Select a model organism that closely relates to your non-model species</p></li>
+<li><p>Use the KEGG database to search and find function genes of interest in the selected model organism</p></li>
+</ul></li>
+<li><p>Transfer Data to the HPC cluster</p>
+<ul>
+<li>Download and transfer required genome, rna-sequence, and fasta file to HPC cluster</li>
+</ul></li>
+<li><p>Mine the Genome Using UNIX/LINUX Command line</p></li>
+<li><p>Manually annotation the genome using Geneious</p>
+<ul>
+<li>Mannually annotate the non-model species genome using files from step 5 and the reference genome of the non-model species in Geneious.</li>
+</ul></li>
+</ol>
 </div>
-<div id="licensing" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Licensing</h1>
-<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<div id="acknowledgements" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Acknowledgements</h1>
+</div>
+<div id="licensing" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Licensing</h1>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 </div>
 
 
