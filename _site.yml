@@ -15,6 +15,8 @@ navbar:
       href: Data_Download.html
     - text: "5. Mine the Genome using the UNIX shell"
       href: Genome_mining.html
-    - text: "6. Annotate the Genome using Geneious"
+    - text: "6. Prepare Project in Geneious"
+      href: geneious_settings.html
+    - text: "7. Annotate the Genome using Geneious"
       href: geneious_annoataion.html
       
