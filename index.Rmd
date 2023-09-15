@@ -85,7 +85,11 @@ Use the upper navigation tabs in the following order:
 
 5.  Mine the Genome Using UNIX/LINUX Command line
 
-6.  Manually annotation the genome using Geneious
+6.  Prepare Project in Geneious
+
+    -   Download Geneious, import required files, and set annotation settings.
+
+7.  Manually annotation the genome using Geneious
 
     -   Mannually annotate the non-model species genome using files from step 5 and the reference genome of the non-model species in Geneious.
 
