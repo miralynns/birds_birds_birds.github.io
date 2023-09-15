@@ -1,5 +1,5 @@
 ---
-title: "Manual Annotation of Targeted Functional Genes in Non-model Species"
+title: "Manual Annotation of Functional Genes in Non-Model Species"
 output:
 #  bookdown::pdf_document2:
 #    toc: TRUE
@@ -35,15 +35,6 @@ library(tufte)
 knitr::write_bib(.packages(), file = 'packages.bib')
 ```
 
-```{r repo, echo=FALSE, fig.align = 'center', out.width = '100%'}
-knitr::include_graphics("Images/GEM3_nov5_logo.png")
-```
-
-# Research Background
-Over the last 10 years, affordable access to sequencing platforms has expanded the availability of quality genomic datasets in publicly available repositories. The challenge is no longer sequencing, but the manual and computational effort to sift through these repositories to mine and analyze these genomes. 
-
-This workflow aims to provide a template for researchers to manually annotate genes of interest from organisms with available genomic data. To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) between Falco peregrinus and Falco rusticolus.
-
 # Vision Statement
 
 This genome annotation workflow was created by Idaho EPSCoR [GEM3](https://www.idahogem3.org) participants.
@@ -51,16 +42,55 @@ The purpose of this workflow module is to share resources and processes for geno
 
 # What Will Be Covered?
 
-Please follow this workflow to learn about how to manually annotate functional genes of interest from non-model organisms.
+Over the last decade, affordable access to sequencing platforms has expanded the availability of quality genomic datasets in publicly available repositories.
+The challenge is no longer sequencing, but the manual and computational effort to sift through these repositories to mine and analyze available genomes.
+
+This workflow aims to provide a template for individuals to manually annotate genes of interest from non-model species using publicly available genomic data.
+To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in *Falco peregrinus*.
 
 **Disclaimer: This workflow was developed in August 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.**
 
 # What Is Required?
 
-You will need access to an High Performance Computing (HPC) machine, [Geneious software](https://www.geneious.com/), as well as R for downstream analyses. Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution's HPC will also be necessary.
+You will need access to an High Performance Computing (HPC) machine, [Geneious software](https://www.geneious.com/), and R for downstream analyses.
+Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution's HPC will also be necessary.
+
+# Workflow Process
+
+Use the upper navigation tabs in the following order:
+
+1.  Command line basics
+
+    1.  Learn of Refresh on command line basics with a tutorial
+
+    2.  Organize your cluster work space
+
+    3.  Confirm required mining modules are available on your institutions HPC.
+
+2.  Slurm Basics
+
+    -   Review a quick breakdown of slurm command line for submission of SBATCH files.
+
+    -   If your HPC uses a different job managing system, review alternative criteria specific to your institution.
+
+3.  Identify functional genes of interest in model species
+
+    -   Select a model organism that closely relates to your non-model species
+
+    -   Use the KEGG database to search and find function genes of interest in the selected model organism
+
+4.  Transfer Data to the HPC cluster
+
+    -   Download and transfer required genome, rna-sequence, and fasta file to HPC cluster
+
+5.  Mine the Genome Using UNIX/LINUX Command line
+
+6.  Manually annotation the genome using Geneious
+
+    -   Mannually annotate the non-model species genome using files from step 5 and the reference genome of the non-model species in Geneious.
 
 # Acknowledgements
 
 # Licensing
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
