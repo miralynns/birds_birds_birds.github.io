@@ -5,10 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "1. Command line Basics"
-      href: HPC_organization.html
-    - text: "2. Slurm Basics"
+    - text: "1. Slurm Basics"
       href: slurm_basics.html
+    - text: "2. Organize HPC Cluster Workspace"
+      href: HPC_organization.html
     - text: "3. Identify Functional Genes"
       href: Kegg_fasta.html
     - text: "4. Transfer Data to the Cluster"
