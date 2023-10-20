@@ -24,15 +24,14 @@ editor_options:
 
 # Identify functional genes and model organism
 
-For this research workflow example, we selected toll-like receptors as the functional genes of interest.
+For this research workflow example, we selected toll-like receptors (TLR) as the functional genes of interest.
 
 A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
+
 For this project, we selected the *Taeniopygia guttata* (Zebra Finch).
-You can learn more about Zebra Finch as a model organism here: [@hauber2021]
+You can learn more about Zebra Finch as a model organism here: [[\@hauber2021](https://doi.org/10.7554/eLife.61849 "The Natural History of Model Organisms: Neurogenomic insights into the behavioral and vocal development of the zebra finch")]
 
 # Find functional gene amino acids sequences
-
-For this workflow example, the model organism of interest is *Taeniopygia guttata* (Zebra finch) and the functional genes of interest are toll-like receptors (TLR).
 
 1.  Navigate to the [KEGG Database](https://www.genome.jp/kegg/)
 
@@ -58,15 +57,13 @@ For this workflow example, the model organism of interest is *Taeniopygia guttat
 
 # Create a FASTA file
 
-To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the TLRs identified in the model organism.
+To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the toll-like receptors identified in the model organism.
 
 FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.
-FASTA files generally start with a left facing bracket `>` followed by the sequence name or some sort of description.
-On the next line the sequence is listed.
-There is a line of space between each sequence and the following sequence ID (Figure 5).
 
-For this part, you will need a text editor.
-Recommended TextEdit app for MacOS or Notepad app for Windows.
+FASTA files generally start with a left facing bracket `>` followed by the sequence name or some sort of description.On the next line the sequence is listed.There is a line of space between each sequence and the following sequence ID (Figure 5).
+
+For this part, you will need a text editor. I recommended TextEdit app for MacOS or Notepad app for Windows.
 
 1.  Click on the first entry from the GenomeNet page in Step 5 of Part 2.
 
@@ -105,3 +102,5 @@ Recommended TextEdit app for MacOS or Notepad app for Windows.
 3.  Save your text file and convert to a fasta.
 
     -   OS: In finder right click on the file and select 'Get Info'. Under Name & Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ' Use .fasta'
+
+We will transfer this FASTA file to the cluster in the next step.
