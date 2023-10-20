@@ -324,7 +324,7 @@ div.tocify {
   <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="HPC_organization.html">2. Organize HPC Cluster Workspace</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -336,10 +336,10 @@ div.tocify {
   <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Geneious Project</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -366,14 +366,13 @@ div.tocify {
 </ul>
 <div id="identify-functional-genes-and-model-organism" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Identify functional genes and model organism</h1>
-<p>For this research workflow example, we selected toll-like receptors as the functional genes of interest.</p>
-<p>A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
-For this project, we selected the <em>Taeniopygia guttata</em> (Zebra Finch).
-You can learn more about Zebra Finch as a model organism here: <span class="citation">[@hauber2021]</span></p>
+<p>For this research workflow example, we selected toll-like receptors (TLR) as the functional genes of interest.</p>
+<p>A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.</p>
+<p>For this project, we selected the <em>Taeniopygia guttata</em> (Zebra Finch).
+You can learn more about Zebra Finch as a model organism here: [<a href="https://doi.org/10.7554/eLife.61849" title="The Natural History of Model Organisms: Neurogenomic insights into the behavioral and vocal development of the zebra finch">@hauber2021</a>]</p>
 </div>
 <div id="find-functional-gene-amino-acids-sequences" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Find functional gene amino acids sequences</h1>
-<p>For this workflow example, the model organism of interest is <em>Taeniopygia guttata</em> (Zebra finch) and the functional genes of interest are toll-like receptors (TLR).</p>
 <ol style="list-style-type: decimal">
 <li><p>Navigate to the <a href="https://www.genome.jp/kegg/">KEGG Database</a></p>
 <ol style="list-style-type: decimal">
@@ -405,13 +404,10 @@ Now we are ready to create a FASTA format file.</p></li>
 </div>
 <div id="create-a-fasta-file" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Create a FASTA file</h1>
-<p>To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the TLRs identified in the model organism.</p>
-<p>FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.
-FASTA files generally start with a left facing bracket <code>&gt;</code> followed by the sequence name or some sort of description.
-On the next line the sequence is listed.
-There is a line of space between each sequence and the following sequence ID (Figure 5).</p>
-<p>For this part, you will need a text editor.
-Recommended TextEdit app for MacOS or Notepad app for Windows.</p>
+<p>To mine the genome of our selected research organisms for toll-like receptors, we will first need to create a file that we can use to flag the toll-like receptors identified in the model organism.</p>
+<p>FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.</p>
+<p>FASTA files generally start with a left facing bracket <code>&gt;</code> followed by the sequence name or some sort of description.On the next line the sequence is listed.There is a line of space between each sequence and the following sequence ID (Figure 5).</p>
+<p>For this part, you will need a text editor. I recommended TextEdit app for MacOS or Notepad app for Windows.</p>
 <ol style="list-style-type: decimal">
 <li><p>Click on the first entry from the GenomeNet page in Step 5 of Part 2.</p></li>
 <li><p>Open a text editor and input the TLR information for each hit (Figure 5).</p>
@@ -453,6 +449,7 @@ LM</p>
 <li>OS: In finder right click on the file and select ‘Get Info’. Under Name &amp; Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ’ Use .fasta’</li>
 </ul></li>
 </ol>
+<p>We will transfer this FASTA file to the cluster in the next step.</p>
 </div>
 
 
