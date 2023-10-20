@@ -46,7 +46,7 @@ Over the last decade, affordable access to sequencing platforms has expanded the
 The challenge is no longer sequencing, but the manual and computational effort to sift through these repositories to mine and analyze available genomes.
 
 This workflow aims to provide a template for individuals to manually annotate genes of interest from non-model species using publicly available genomic data.
-To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in *Falco peregrinus*.
+To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in *Falco peregrinus* and *Falco rusticolus*.
 
 **Disclaimer: This workflow was developed in August 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.**
 
@@ -59,41 +59,49 @@ Knowledge of job script format, how to submit jobs, and how to compute in an int
 
 Use the upper navigation tabs in the following order:
 
-1.  Command line basics
-
-    1.  Learn of Refresh on command line basics with a tutorial
-
-    2.  Organize your cluster work space
-
-    3.  Confirm required mining modules are available on your institutions HPC.
-
-2.  Slurm Basics
+1.  Slurm Basics
 
     -   Review a quick breakdown of slurm command line for submission of SBATCH files.
 
     -   If your HPC uses a different job managing system, review alternative criteria specific to your institution.
+2. HPC Cluster Workspace
 
+    1.  Learn or refresh your command line basics with a tutorial.
+
+    2.  Organize your cluster work space.
+
+    3.  Confirm required mining modules are available on your institutions HPC.
 3.  Identify functional genes of interest in model species
 
-    -   Select a model organism that closely relates to your non-model species
+    -   Select a model organism that closely relates to your non-model species.
 
-    -   Use the KEGG database to search and find function genes of interest in the selected model organism
+    -   Use the KEGG database to search and find function genes of interest in the selected model organism.
 
 4.  Transfer Data to the HPC cluster
 
-    -   Download and transfer required genome, rna-sequence, and fasta file to HPC cluster
+    -   Download and transfer required genomes, rna-sequences, and fasta files to HPC cluster.
 
 5.  Mine the Genome Using UNIX/LINUX Command line
 
-6.  Prepare Project in Geneious
+    -   Follow the provided order of operations for how to manually mine the genome using bioinformatics modules.
+
+6.  Geneious Project Preparation
 
     -   Download Geneious, import required files, and set annotation settings.
 
-7.  Manually annotation the genome using Geneious
+7.  Manual Annotation
 
-    -   Mannually annotate the non-model species genome using files from step 5 and the reference genome of the non-model species in Geneious.
+    -   Work in Geneious to mannually annotate the non-model species genome using the output files from mining and the reference genome of the non-model species.
 
 # Acknowledgements
+
+This project was funded in support from National Science Foundation grant No. OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.
+
+Mentorship from Stephanie Galla and the support from the Conservation Genetics Laboratory was 
+
+Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution lead by Matthew Holding. Collaborative project was funded in support from the National Science Foundation grant No. OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.
+
+Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.
 
 # Licensing
 
