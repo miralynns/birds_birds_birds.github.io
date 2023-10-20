@@ -321,10 +321,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="HPC_organization.html">1. Command line Basics</a>
+  <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="slurm_basics.html">2. Slurm Basics</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -336,10 +336,10 @@ div.tocify {
   <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Geneious Project</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -361,14 +361,14 @@ div.tocify {
 <p>High Performance Computing (HPC) platforms generally use a job manager system to ensure equitable access to computing resources for multiple users.
 At Boise State University, the Borah computing cluster runs submitted SBATCH files that use slurm command line.
 In this section, we will breakdown slurm scripts and provide an example.</p>
-<div id="slurm-requirements" class="section level3" number="0.0.1">
-<h3><span class="header-section-number">0.0.1</span> Slurm requirements</h3>
+<div id="slurm-requirements" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Slurm requirements</h1>
 <p>Slurm scripts have four parts:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Shebang command</strong> functions to interpret the UNIX commands and run the slurm script.
 This line of command is required at the top of every slurm script.</p>
 <p><code>#!/bin/bash</code></p></li>
-<li><p><strong>Resource request section</strong> breakdowns the amount of resources required for the job and informs slurm of the job name, RAM requirements, number of CPUs, nodes, and many other parameters explained below.</p>
+<li><p><strong>Resource request section</strong> breakdowns the amount of resources required for the job and informs slurm of the job name, RAM requirements, number of CPUs, nodes, and many other parameters explained below:</p>
 <pre><code>#SBATCH -J --job-name
 #SBATCH -o --output 
 #SBATCH -p --partition
@@ -393,10 +393,9 @@ These three lines function to notify the user when the job has started, ended, a
 <p><code>module load python</code></p></li>
 <li><p><strong>Job Step</strong> details the module tasks required for the job.</p></li>
 </ol>
-<pre><code>`conda active -env`Slurm Parameter Explanations</code></pre>
 </div>
-<div id="slurm-script-example" class="section level3" number="0.0.2">
-<h3><span class="header-section-number">0.0.2</span> Slurm script example</h3>
+<div id="slurm-script-example" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Slurm script example</h1>
 <p>Below is a slurm script example we will be using to download RNA-seq files to the computing cluster.</p>
 <p>To make comments in a bash script, we use <code>##</code></p>
 <pre><code>## Shebang
@@ -424,12 +423,12 @@ module load sratoolkit/2.10.9
 # SRA toolkit:
 fastq-dump -I --split-files SRR13279135</code></pre>
 </div>
-<div id="creating-and-submitting-a-slurm-file" class="section level3" number="0.0.3">
-<h3><span class="header-section-number">0.0.3</span> Creating and submitting a slurm file</h3>
+<div id="creating-and-submitting-a-slurm-file" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Creating and submitting a slurm file</h1>
 <p>It is recommended to write slurm scripts in a text editor and paste when you are ready to create a job file, copy and paste the content into the terminal.
 I recommend using <a href="https://www.barebones.com/products/bbedit/">BBedit</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Log into Borah</p></li>
+<li><p>Log into HPC Cluster</p></li>
 <li><p>Navigate to the scratch directory for your user <code>cd /scratch/username</code></p></li>
 <li><p>Create a directory for this practice example: <code>mkdir slurm_practice</code></p></li>
 <li><p>Navigate to the directory you just created: <code>cd slurm_practice</code></p></li>
