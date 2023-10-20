@@ -201,7 +201,7 @@ Step 2: tblastn
 - num_threads: dependent upon computing capacity, but providing a value can speed up the module running process
 - evalue: specifies the number of hits of similar quality. Lower evalue means less hits but higher score. Higher evalue means more hits, but lower score.
 
-Step 3:
+Step 3: In this step, rbparallel is used to run processes simultaneoulsy in efforts to search for the tblasn hits of TLR fasta sequences in the aligned sam files in each contig of the genome that has been identified to have a hit.
 ```
 
 #### Output Files
@@ -211,7 +211,7 @@ Output names were identified in the slurm file, but a general list is detailed b
 
 -   A set of nine **\_genomeDB** files with multiple file formats will be created.
 
--   **blastn.out** file contains XXX.
+-   **blastn.out** file contains blast output results in a tad-delinated organization. These results should align with a manual tblastn search on the NCBI database.
     *This file will be needed for the manual annotation process in Geneious.*
 
 -   **contig.txt** file contains a list of contigs that have been identified to have the functional genes of interest present.
