@@ -7,7 +7,7 @@ navbar:
       href: index.html
     - text: "1. Slurm Basics"
       href: slurm_basics.html
-    - text: "2. Organize HPC Cluster Workspace"
+    - text: "2. HPC Workspace"
       href: HPC_organization.html
     - text: "3. Identify Functional Genes"
       href: Kegg_fasta.html
@@ -15,8 +15,8 @@ navbar:
       href: Data_Download.html
     - text: "5. Mine the Genome using the UNIX shell"
       href: genome_mining.html
-    - text: "6. Prepare Geneious Project"
+    - text: "6. Geneious Project Preparation"
       href: geneious_settings.html
-    - text: "7. Annotate the Genome using Geneious"
+    - text: "7. Manual Annotation"
       href: geneious_annoataion.html
       
