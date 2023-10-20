@@ -52,7 +52,7 @@ To do this, we aim to walk readers through the process with a specific example: 
 
 # What Is Required?
 
-You will need access to an High Performance Computing (HPC) machine, [Geneious software](https://www.geneious.com/), and R for downstream analyses.
+You will need access to a High Performance Computing (HPC) machine, [Geneious software](https://www.geneious.com/), and R for downstream analyses.
 Knowledge of job script format, how to submit jobs, and how to compute in an interactive node specific to your institution's HPC will also be necessary.
 
 # Workflow Process
@@ -70,7 +70,7 @@ Use the upper navigation tabs in the following order:
 
     2.  Organize your cluster work space.
 
-    3.  Confirm required mining modules are available on your institutions HPC.
+    3.  Confirm required mining modules are available on your institution's HPC.
 3.  Identify functional genes of interest in model species
 
     -   Select a model organism that closely relates to your non-model species.
@@ -91,17 +91,17 @@ Use the upper navigation tabs in the following order:
 
 7.  Manual Annotation
 
-    -   Work in Geneious to mannually annotate the non-model species genome using the output files from mining and the reference genome of the non-model species.
+    -   Work in Geneious to manually annotate the non-model species genome using the output files from mining and the reference genome of the non-model species.
 
 # Acknowledgements
 
-This project was funded in support from National Science Foundation grant No. OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.
+This project was funded with support from National Science Foundation grant No. OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.
 
 Mentorship was kindly provided by Stephanie Galla, with support from the Conservation Genetics Laboratory at Boise State University.
 
-Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution lead by Matthew Holding. Collaborative project was funded in support from the National Science Foundation grant No. OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.
+Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution led by Matthew Holding. The collaborative project was funded with support from the National Science Foundation grant No. OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.
 
-Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.
+Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker, and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.
 
 # Licensing
 
