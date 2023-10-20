@@ -324,7 +324,7 @@ div.tocify {
   <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="HPC_organization.html">2. Organize HPC Cluster Workspace</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -336,10 +336,10 @@ div.tocify {
   <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Geneious Project</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -372,7 +372,7 @@ The purpose of this workflow module is to share resources and processes for geno
 <p>Over the last decade, affordable access to sequencing platforms has expanded the availability of quality genomic datasets in publicly available repositories.
 The challenge is no longer sequencing, but the manual and computational effort to sift through these repositories to mine and analyze available genomes.</p>
 <p>This workflow aims to provide a template for individuals to manually annotate genes of interest from non-model species using publicly available genomic data.
-To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in <em>Falco peregrinus</em>.</p>
+To do this, we aim to walk readers through the process with a specific example: the manual annotation of toll-like receptors (TLRs) in <em>Falco peregrinus</em> and <em>Falco rusticolus</em>.</p>
 <p><strong>Disclaimer: This workflow was developed in August 2023 with bioinformatic and genomic research recommendations at that time. Please note that program versions and recommendations will likely change with time due to the nature of this quickly evolving field.</strong></p>
 </div>
 <div id="what-is-required" class="section level1" number="3">
@@ -384,39 +384,46 @@ Knowledge of job script format, how to submit jobs, and how to compute in an int
 <h1><span class="header-section-number">4</span> Workflow Process</h1>
 <p>Use the upper navigation tabs in the following order:</p>
 <ol style="list-style-type: decimal">
-<li><p>Command line basics</p>
-<ol style="list-style-type: decimal">
-<li><p>Learn of Refresh on command line basics with a tutorial</p></li>
-<li><p>Organize your cluster work space</p></li>
-<li><p>Confirm required mining modules are available on your institutions HPC.</p></li>
-</ol></li>
 <li><p>Slurm Basics</p>
 <ul>
 <li><p>Review a quick breakdown of slurm command line for submission of SBATCH files.</p></li>
 <li><p>If your HPC uses a different job managing system, review alternative criteria specific to your institution.</p></li>
 </ul></li>
+<li><p>HPC Cluster Workspace</p>
+<ol style="list-style-type: decimal">
+<li><p>Learn or refresh your command line basics with a tutorial.</p></li>
+<li><p>Organize your cluster work space.</p></li>
+<li><p>Confirm required mining modules are available on your institutions HPC.</p></li>
+</ol></li>
 <li><p>Identify functional genes of interest in model species</p>
 <ul>
-<li><p>Select a model organism that closely relates to your non-model species</p></li>
-<li><p>Use the KEGG database to search and find function genes of interest in the selected model organism</p></li>
+<li><p>Select a model organism that closely relates to your non-model species.</p></li>
+<li><p>Use the KEGG database to search and find function genes of interest in the selected model organism.</p></li>
 </ul></li>
 <li><p>Transfer Data to the HPC cluster</p>
 <ul>
-<li>Download and transfer required genome, rna-sequence, and fasta file to HPC cluster</li>
+<li>Download and transfer required genomes, rna-sequences, and fasta files to HPC cluster.</li>
 </ul></li>
-<li><p>Mine the Genome Using UNIX/LINUX Command line</p></li>
-<li><p>Prepare Project in Geneious</p>
+<li><p>Mine the Genome Using UNIX/LINUX Command line</p>
+<ul>
+<li>Follow the provided order of operations for how to manually mine the genome using bioinformatics modules.</li>
+</ul></li>
+<li><p>Geneious Project Preparation</p>
 <ul>
 <li>Download Geneious, import required files, and set annotation settings.</li>
 </ul></li>
-<li><p>Manually annotation the genome using Geneious</p>
+<li><p>Manual Annotation</p>
 <ul>
-<li>Mannually annotate the non-model species genome using files from step 5 and the reference genome of the non-model species in Geneious.</li>
+<li>Work in Geneious to mannually annotate the non-model species genome using the output files from mining and the reference genome of the non-model species.</li>
 </ul></li>
 </ol>
 </div>
 <div id="acknowledgements" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Acknowledgements</h1>
+<p>This project was funded in support from National Science Foundation grant No. OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.</p>
+<p>Mentorship from Stephanie Galla and the support from the Conservation Genetics Laboratory was</p>
+<p>Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution lead by Matthew Holding. Collaborative project was funded in support from the National Science Foundation grant No. OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.</p>
+<p>Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.</p>
 </div>
 <div id="licensing" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Licensing</h1>
