@@ -61,15 +61,13 @@ scp /Users/username/Downloads/GCF_023634155.1_bFalPer1.pri_genomic.* HPC-criteri
 
 # Genes of Interest
 
-1.  Transfer the fasta file created from the KEGG database into the blast directory:
+1.  Transfer the fasta file created from the KEGG database into the blast directory using `scp`:
 
 ```         
 scp /Users/username/Downloads/Zebra_Finch_TLRs.fasta HPC-criteria:/scratch/username/tlr_mining/p_falcon/blast
 ```
 
 2.  Login to the HPC and confirm files have been transferred to the appropriate directories.
-
-    *Depending on the available space on your computer and institutional options, other file upload options could include `wget` and [Globus](https://www.globus.org/data-transfer).*
 
 # RNA sequence data
 
@@ -87,15 +85,14 @@ Since are interested in the TLRs, our preferred sample will be blood.
 
 ![Figure 1. SRA database search of RNA source samples for *F. peregrinus*. Top five results displayed from August 2023.](images/Figure_%20SRA_search.jpg)
 
-4.  View the Kola7 SRA information page, we will want to note the run identification so that we can use SRA Toolkit to download the RNA-seq data onto the cluster (Figure 7).
+4.  View the Kola7 SRA information page, we will want to note the run identification so that we can use SRA Toolkit to download the RNA-seq data onto the cluster (Figure 2).
 
     -   For the Kola7 SRA submission the run identification is SRR13279135
         -   Click on the run number to learn more about the submission and data.
 
             ![Figure 2. SRA database details for Kola7.](images/Figure_SRA_details.jpg)
 
-Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster.
-Next we will need to download the relevant SRA files.
+Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster.Next we will need to download the relevant SRA files.
 
 ## Use SRA Toolkit to download RNA-seq data to the cluster
 
@@ -116,7 +113,7 @@ Most data is too large to download directly from the SRA repository, so this too
 
     -   For this example, the resulting files should be SRR13279135_1.fastq and SRR13279135_2.fastq.
 
-##### SRA toolkit slurm script example:
+### SRA toolkit Slurm script example:
 
 ```         
 #!/bin/bash
@@ -153,7 +150,7 @@ prefetch SRR21639343 --max-size 96000000000
 fasterq-dump SRR21639343 --split-files
 ```
 
-##### Explanation:
+#### Dependencies Explanation:
 
 ```         
 - max-size: prefetch has a 20 GB maximum, so the limit will need to be manually increased for accession requests larger than 20 GB
