@@ -18,7 +18,7 @@ High Performance Computing (HPC) platforms generally use a job manager system to
 At Boise State University, the Borah computing cluster runs submitted SBATCH files that use slurm command line.
 In this section, we will breakdown slurm scripts and provide an example.
 
-### Slurm requirements
+# Slurm requirements
 
 Slurm scripts have four parts:
 
@@ -27,7 +27,7 @@ Slurm scripts have four parts:
 
     `#!/bin/bash`
 
-2.  **Resource request section** breakdowns the amount of resources required for the job and informs slurm of the job name, RAM requirements, number of CPUs, nodes, and many other parameters explained below.
+2.  **Resource request section** breakdowns the amount of resources required for the job and informs slurm of the job name, RAM requirements, number of CPUs, nodes, and many other parameters explained below:
 
     ```         
     #SBATCH -J --job-name
@@ -66,11 +66,7 @@ Slurm scripts have four parts:
 
 4.  **Job Step** details the module tasks required for the job.
 
-```         
-`conda active -env`Slurm Parameter Explanations
-```
-
-### Slurm script example
+# Slurm script example
 
 Below is a slurm script example we will be using to download RNA-seq files to the computing cluster.
 
@@ -103,12 +99,12 @@ module load sratoolkit/2.10.9
 fastq-dump -I --split-files SRR13279135
 ```
 
-### Creating and submitting a slurm file
+# Creating and submitting a slurm file
 
 It is recommended to write slurm scripts in a text editor and paste when you are ready to create a job file, copy and paste the content into the terminal.
 I recommend using [BBedit](https://www.barebones.com/products/bbedit/).
 
-1.  Log into Borah
+1.  Log into HPC Cluster
 
 2.  Navigate to the scratch directory for your user `cd /scratch/username`
 
