@@ -321,10 +321,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="HPC_organization.html">1. Command line Basics</a>
+  <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="slurm_basics.html">2. Slurm Basics</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -336,10 +336,10 @@ div.tocify {
   <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Geneious Project</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -521,14 +521,14 @@ Step 2: tblastn
 - num_threads: dependent upon computing capacity, but providing a value can speed up the module running process
 - evalue: specifies the number of hits of similar quality. Lower evalue means less hits but higher score. Higher evalue means more hits, but lower score.
 
-Step 3:</code></pre>
+Step 3: In this step, rbparallel is used to run processes simultaneoulsy in efforts to search for the tblasn hits of TLR fasta sequences in the aligned sam files in each contig of the genome that has been identified to have a hit.</code></pre>
 <div id="output-files-2" class="section level4" number="4.1.1.1">
 <h4><span class="header-section-number">4.1.1.1</span> Output Files</h4>
 <p>Many files will be created from this model.
 Output names were identified in the slurm file, but a general list is detailed below.</p>
 <ul>
 <li><p>A set of nine <strong>_genomeDB</strong> files with multiple file formats will be created.</p></li>
-<li><p><strong>blastn.out</strong> file contains XXX.
+<li><p><strong>blastn.out</strong> file contains blast output results in a tad-delinated organization. These results should align with a manual tblastn search on the NCBI database.
 <em>This file will be needed for the manual annotation process in Geneious.</em></p></li>
 <li><p><strong>contig.txt</strong> file contains a list of contigs that have been identified to have the functional genes of interest present.
 <em>This file will be needed for the manual annotation process in Geneious.</em></p></li>
