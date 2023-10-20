@@ -14,35 +14,33 @@ editor_options:
     wrap: sentence
 ---
 
-# Required Program
+Required Program
 
-Geneious is a bioinformatics software that we will use to visualize the sequence data.
-While Geneious is an incredible platform, it is expensive.
-They offer a 1-month free trial and provide instructors with student access codes during semester sessions.
+Geneious is a bioinformatics software that we will use to visualize the sequence data. While Geneious is an incredible platform, it is expensive. They offer a 1-month free trial and provide instructors with student access codes during semester sessions.
 
-Once Geneious is downloaded on you home computer, learn about the [software interface options](https://manual.geneious.com/en/latest/2-GeneiousInterface.html) before moving forward.
+Once Geneious is downloaded on your home computer, learn about the software interface options before moving forward.
 
-# Required Files
+Required Files
 
-The following uncompressed files are needed to import to Geneious:
+For manual genome annotation, the following uncompressed files are required to be imported into Geneious:
 
-1.  Genome in FNA format (\*.fna)
+Genome in FNA format (*.fna)
 
-    1.  This file contains the alignment of nucleotides and protein sequences in a fasta file format.
+This file contains the alignment of nucleotides and protein sequences in a fasta file format.
 
-2.  Genome in GFF format (\*.gff)
+Genome in GFF format (*.gff)
 
-    1.  This file details genomic features in a tab-delimited format. 
+This file details genomic features in a tab-delimited format. 
 
-3.  BAM files from the BLAST step of the cluster process.
+BAM files from the BLAST step of the cluster process.
 
-4.  Blast \*gtf files
+Blast *gtf file
 
-    1.  Need to discuss the creation of this file via sheets/Excel
+This gtf file is created from the blastn.out file. Follow the instructions on this workbook to create the .gft file.
 
-5.  StringTie \*.gft file
+StringTie *.gft file
 
-# Importing Files
+Importing Files
 
 Once you have gathered the required files for Geneious you are ready to create a project folder in Geneious and import these files in the order listed above. 
 
@@ -50,48 +48,48 @@ Right-click 'Local" select the 'New Folder' option, and name your folder based o
 
 Importing files into Geneious requires some additional steps, files should be imported in your project folder in the proper order, as detailed in the steps below:
 
-1.  Drag your genome \*fna file into the 'Drop files here to import' area of Geneious.
+Drag your genome *fna file into the 'Drop files here to import' area of Geneious.
 
-    -   During the import process, Geneious will prompt a Grouping Sequences option.
-        Select the 'Keep sequences separate' option.
+During the import process, Geneious will prompt a Grouping Sequences option. Select the 'Keep sequences separate' option.
 
-        -   If Geneious prompts Ambiguous Sequences, select the 'Nucleotide sequences' option.
+If Geneious prompts Ambiguous Sequences, select the 'Nucleotide sequences' option.
 
-2.  Select All imported .fna files using the checkbox above the document table.
-    Then drag and drop the genome \*.gff file into the document table area.
+Select All imported .fna files using the checkbox above the document table. Then drag and drop the genome *.gff file into the document table area.
 
-3.  Each BAM file must be imported onto the corresponding sequence file name. 
+Each BAM file must be imported onto the corresponding sequence file name. 
 
-    1.  Select a single sequence file (these files have the small DNA icon, see image below) then drag the BAM file on top of the highlighted sequencing file. 
+Select a single sequence file (these files have the small DNA icon, see image below) then drag the BAM file on top of the highlighted sequencing file. 
 
-        ![](images/Geneious_nucleotide_Sequence_icon.png){width="171" height="32"}
 
-    2.  Import BAM files one at a time. 
 
-    3.  You will only have BAM files for sequence files that have been identified to have the genes of interest.
+Import BAM files one at a time. 
 
-    4.  Once the BAM file has been imported completely, you will see a contig file below the sequence file.
-        This file has an icon with three angled dashes (see image below).
+You will only have BAM files for sequence files that have been identified to have the genes of interest.
 
-        ![](images/Geneious_contig_icon.png){width="189"}
+Once the BAM file has been imported, you will see a contig file below the sequence file. This file has an icon with three angled dashes (see image below).
 
-    5.  HOLD
 
-# Geneious Settings
 
-In this section, we will select settings used for visualization; however, there are many settings an options while working with annotations in Geneious.
-Review the [Geneious User Manual](https://manual.geneious.com/en/latest/8-Annotations.html) to determine additional preferred settings for your project.
+Select all files and drop in the stringtie file.
 
-To start, select a single contig file from the document table.
-A contig view will appear in the Document Viewer area and to the right of the viewer is a settings panel (Figure 1).
-Note the six different icons on the right side.
-We will work through adjusting default settings for most options.
-Do not change default settings unless indicated in the process below:
+Select all files and drop in the blastHIT .gtf file.
 
-1.  General: Select Complement and translation
-2.  Display: Unclick Concensus at the top. In the Translation area, set the Translation on Consensus & Reference. Set the Translation Options Relative to Reference.
-3.  Graphs: Ensure Show Graphs and the Log Scale option under Coverage are selected.
-4.  Annotations and Tracks: In the tracks area, you will see the imported genome, StringTie, and blastnHIT files. For tracks with options, only have CDS and Exon selected.
-5.  Advanced: Under the Annotations section, Adjust Labels to none and select and unselect the Compress annotations option, as needed.
+Geneious Settings
 
-Now you are ready to annotate!
+In this section, we will select settings used for visualization; however, there are many settings an options while working with annotations in Geneious. Review the Geneious User Manual to determine additional preferred settings for your project.
+
+To start, select a single contig file from the document table. A contig view will appear in the Document Viewer area and to the right of the viewer is a settings panel (Figure 1). Note the six different icons on the right side. We will work through adjusting default settings for most options. Do not change default settings unless indicated in the process below:
+
+General: Select Complement and translation
+
+Display: Unclick Concensus at the top. In the Translation area, set the Translation on Consensus & Reference. Set the Translation Options Relative to Reference.
+
+Graphs: Ensure Show Graphs and the Log Scale option under Coverage are selected.
+
+Annotations and Tracks: In the tracks area, you will see the imported genome, StringTie, and blastnHIT files. For tracks with options, only have CDS and Exon selected.
+
+Advanced: Under the Annotations section, Adjust Labels to none and select and unselect the Compress annotations option, as needed.
+
+Now you are ready to annotate this contig! 
+
+Please note that these setting adjustments will be done for each contig you are working on.
