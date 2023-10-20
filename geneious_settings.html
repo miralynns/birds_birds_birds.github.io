@@ -321,10 +321,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="HPC_organization.html">1. Command line Basics</a>
+  <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="slurm_basics.html">2. Slurm Basics</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -333,13 +333,13 @@ div.tocify {
   <a href="Data_Download.html">4. Transfer Data to the Cluster</a>
 </li>
 <li>
-  <a href="Genome_mining.html">5. Mine the Genome using the UNIX shell</a>
+  <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Project in Geneious</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -360,14 +360,14 @@ div.tocify {
 
 <div id="required-program" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Required Program</h1>
-<p>Geneious is a bioinformatics software that we will use to visualize the sequence data.
+<p><a href="https://www.geneious.com/">Geneious</a> is a bioinformatics software that we will use to visualize the sequence data.
 While Geneious is an incredible platform, it is expensive.
 They offer a 1-month free trial and provide instructors with student access codes during semester sessions.</p>
-<p>Once Geneious is downloaded on you home computer, learn about the <a href="https://manual.geneious.com/en/latest/2-GeneiousInterface.html">software interface options</a> before moving forward.</p>
+<p>Once Geneious is downloaded on your home computer, learn about the <a href="https://manual.geneious.com/en/latest/2-GeneiousInterface.html">software interface options</a> before moving forward.</p>
 </div>
 <div id="required-files" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Required Files</h1>
-<p>The following uncompressed files are needed to import to Geneious:</p>
+<p>For manual genome annotation, the following uncompressed files are required to be imported into Geneious:</p>
 <ol style="list-style-type: decimal">
 <li><p>Genome in FNA format (*.fna)</p>
 <ol style="list-style-type: decimal">
@@ -378,9 +378,9 @@ They offer a 1-month free trial and provide instructors with student access code
 <li>This file details genomic features in a tab-delimited format. </li>
 </ol></li>
 <li><p>BAM files from the BLAST step of the cluster process.</p></li>
-<li><p>Blast *gtf files</p>
+<li><p>Blast *gtf file</p>
 <ol style="list-style-type: decimal">
-<li>Need to discuss the creation of this file via sheets/Excel</li>
+<li>This gtf file is created from the blastn.out file. Follow the instructions on this <a href="https://docs.google.com/spreadsheets/d/1kkGccJadvwPx84QSyUvCvDTzy21k8zBX/edit?usp=share_link&amp;ouid=115937912009066843426&amp;rtpof=true&amp;sd=true">workbook</a> to create the .gft file.</li>
 </ol></li>
 <li><p>StringTie *.gft file</p></li>
 </ol>
@@ -407,10 +407,11 @@ Then drag and drop the genome *.gff file into the document table area.</p></li>
 <p><img src="Images/Geneious_nucleotide_Sequence_icon.png" width="171" height="32" /></p></li>
 <li><p>Import BAM files one at a time. </p></li>
 <li><p>You will only have BAM files for sequence files that have been identified to have the genes of interest.</p></li>
-<li><p>Once the BAM file has been imported completely, you will see a contig file below the sequence file.
+<li><p>Once the BAM file has been imported, you will see a contig file below the sequence file.
 This file has an icon with three angled dashes (see image below).</p>
 <p><img src="Images/Geneious_contig_icon.png" width="189" /></p></li>
-<li><p>HOLD</p></li>
+<li><p>Select all files and drop in the stringtie file.</p></li>
+<li><p>Select all files and drop in the blastHIT .gtf file.</p></li>
 </ol></li>
 </ol>
 </div>
@@ -430,7 +431,8 @@ Do not change default settings unless indicated in the process below:</p>
 <li>Annotations and Tracks: In the tracks area, you will see the imported genome, StringTie, and blastnHIT files. For tracks with options, only have CDS and Exon selected.</li>
 <li>Advanced: Under the Annotations section, Adjust Labels to none and select and unselect the Compress annotations option, as needed.</li>
 </ol>
-<p>Now you are ready to annotate!</p>
+<p>Now you are ready to annotate this contig!</p>
+<p><em>Please note that these setting adjustments will be done for each contig you are working on.</em></p>
 </div>
 
 
