@@ -321,10 +321,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="HPC_organization.html">1. Command line Basics</a>
+  <a href="slurm_basics.html">1. Slurm Basics</a>
 </li>
 <li>
-  <a href="slurm_basics.html">2. Slurm Basics</a>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
 </li>
 <li>
   <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
@@ -336,10 +336,10 @@ div.tocify {
   <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
 </li>
 <li>
-  <a href="geneious_settings.html">6. Prepare Geneious Project</a>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
 </li>
 <li>
-  <a href="geneious_annoataion.html">7. Annotate the Genome using Geneious</a>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -398,12 +398,11 @@ This option gathers all files that start with that prefix:</p>
 <div id="genes-of-interest" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Genes of Interest</h1>
 <ol style="list-style-type: decimal">
-<li>Transfer the fasta file created from the KEGG database into the blast directory:</li>
+<li>Transfer the fasta file created from the KEGG database into the blast directory using <code>scp</code>:</li>
 </ol>
 <pre><code>scp /Users/username/Downloads/Zebra_Finch_TLRs.fasta HPC-criteria:/scratch/username/tlr_mining/p_falcon/blast</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Login to the HPC and confirm files have been transferred to the appropriate directories.</p>
-<p><em>Depending on the available space on your computer and institutional options, other file upload options could include <code>wget</code> and <a href="https://www.globus.org/data-transfer">Globus</a>.</em></p></li>
+<li>Login to the HPC and confirm files have been transferred to the appropriate directories.</li>
 </ol>
 </div>
 <div id="rna-sequence-data" class="section level1" number="3">
@@ -427,7 +426,7 @@ Since are interested in the TLRs, our preferred sample will be blood.</p>
 <p class="caption">Figure 1. SRA database search of RNA source samples for <em>F. peregrinus</em>. Top five results displayed from August 2023.</p>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li><p>View the Kola7 SRA information page, we will want to note the run identification so that we can use SRA Toolkit to download the RNA-seq data onto the cluster (Figure 7).</p>
+<li><p>View the Kola7 SRA information page, we will want to note the run identification so that we can use SRA Toolkit to download the RNA-seq data onto the cluster (Figure 2).</p>
 <ul>
 <li>For the Kola7 SRA submission the run identification is SRR13279135
 <ul>
@@ -439,8 +438,7 @@ Since are interested in the TLRs, our preferred sample will be blood.</p>
 </ul></li>
 </ul></li>
 </ol>
-<p>Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster.
-Next we will need to download the relevant SRA files.</p>
+<p>Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster.Next we will need to download the relevant SRA files.</p>
 </div>
 <div id="use-sra-toolkit-to-download-rna-seq-data-to-the-cluster" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Use SRA Toolkit to download RNA-seq data to the cluster</h2>
@@ -457,8 +455,8 @@ Most data is too large to download directly from the SRA repository, so this too
 <li>For this example, the resulting files should be SRR13279135_1.fastq and SRR13279135_2.fastq.</li>
 </ul></li>
 </ol>
-<div id="sra-toolkit-slurm-script-example" class="section level5" number="3.2.0.0.1">
-<h5><span class="header-section-number">3.2.0.0.1</span> SRA toolkit slurm script example:</h5>
+<div id="sra-toolkit-slurm-script-example" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> SRA toolkit Slurm script example:</h3>
 <pre><code>#!/bin/bash
 #SBATCH -J sra_pfalcon
 #SBATCH -o log.o%j 
@@ -487,11 +485,11 @@ If you receive an Error Code 3, then the SRA file rather large you will need to 
 See the example below.</p>
 <pre><code>prefetch SRR21639343 --max-size 96000000000
 fasterq-dump SRR21639343 --split-files</code></pre>
-</div>
-<div id="explanation" class="section level5" number="3.2.0.0.2">
-<h5><span class="header-section-number">3.2.0.0.2</span> Explanation:</h5>
+<div id="dependencies-explanation" class="section level4" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> Dependencies Explanation:</h4>
 <pre><code>- max-size: prefetch has a 20 GB maximum, so the limit will need to be manually increased for accession requests larger than 20 GB
 - split-flies: sra files for the gfalcon were to big so I had to use prefetch. This required some configuration and then the sbatch file.</code></pre>
+</div>
 </div>
 </div>
 </div>
