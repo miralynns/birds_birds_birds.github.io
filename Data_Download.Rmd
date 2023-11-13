@@ -39,11 +39,11 @@ Now that we have organized directories on a cluster, we will move the required f
 
     3.  Annotation features (GFF)
 
-        ![Figure 1. Genome file downloading options for the Falco peregrinus reference genome as of August 2023. Image A highlights where to click to download. Image B highlights required files to download.](images/Slide1%203.jpg)
+        ![Figure 1. Genome file downloading options for the Falco peregrinus reference genome as of August 2023. Image A highlights where to click to download. Image B highlights the required files to download.](images/Slide1%203.jpg)
 
 3.  Move all the downloaded genome files into a project folder on the home computer.
 
-    1.  These three files will be needed for the manual annotation process in Geneious after the genome has been mined, but for now the `.fna.gz` file will need to be transferred onto the computing cluster. It is recommended to use `scp` for this step.
+    1.  These three files will be needed for the manual annotation process in Geneious after the genome has been mined, but for now, the `.fna.gz` file will need to be transferred onto the computing cluster. It is recommended to use `scp` for this step.
 
 4.  Open a new terminal shell and input the scp command.
     A password will be required to access the files through the HPC before the transfer can begin.
@@ -78,8 +78,8 @@ These files will provide protein-level data we can use to mine for the functiona
 Since are interested in the TLRs, our preferred sample will be blood.
 
 1.  Search the scientific name of the non-model organism (*Falco peregrinus*) of interest in the search bar.
-2.  On the resulting page a list of submission will appear, but we want to focus on RNA source samples. On the left side of the screen select the RNA filter option under 'Source' (Figure 1).
-3.  SRA submission are not consistently labeled. Some might detail the sample type, but that is not always the case. You will want to click on different submission until you find one that from the preferred sample source.
+2.  On the resulting page a list of submissions will appear, but we want to focus on RNA source samples. On the left side of the screen select the RNA filter option under 'Source' (Figure 1).
+3.  SRA submissions are not consistently labeled. Some might detail the sample type, but that is not always the case. You will want to click on different submissions until you find one from the preferred sample source.
     -   If a sample source is not detailed in the Accession information area, you might need to deep dive into the literature to find the research paper for this sample and review the methods section for sample collection.
     -   In this example, Accession: SRX9708906 (Kola7) was a blood sample and is usable for our workflow.
 
@@ -92,24 +92,24 @@ Since are interested in the TLRs, our preferred sample will be blood.
 
             ![Figure 2. SRA database details for Kola7.](images/Figure_SRA_details.jpg)
 
-Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster.Next we will need to download the relevant SRA files.
+Now that we know the Run ID from the SRA database, we will submit a job using SRA Toolkit to download the RNA-seq files to the cluster. Next we will need to download the relevant SRA files.
 
 ## Use SRA Toolkit to download RNA-seq data to the cluster
 
-[SRA Toolk](https://github.com/ncbi/sra-tools)it is a module created to download SRA data.
+[SRA Toolk](https://github.com/ncbi/sra-tools) is a module created to download SRA data.
 Most data is too large to download directly from the SRA repository, so this toolkit is usually a necessary step.
 
 1.  Create a job file in the terminal using the `nano` command
 
     `nano sra_pfalcon`
 
-2.  Adjust the slurm script example below and copy into the nano screen.
+2.  Adjust the slurm script example below and copy it into the nano screen.
 
 3.  Run the slurm script, using the `sbatch` command:
 
     `sbatch sra_pfalcon`
 
-4.  Once the job is finished running, confirm there are two files are in the sra directory.
+4.  Once the job is finished running, confirm there are two files in the sra directory.
 
     -   For this example, the resulting files should be SRR13279135_1.fastq and SRR13279135_2.fastq.
 
@@ -135,14 +135,14 @@ module load sratoolkit/2.10.9
 
 # Sort Path:
 datapath=/bsuscratch/username/tlr_mining/p_falcon/sra
-## Sort Path section is required if you are creating a jobfile to submit job from a different directory than the directory the required files for the job are located.
+## Sort Path section is required if you are creating a jobfile to submit a job from a different directory than the directory where the required files for the job are located.
 
 # SRA toolkit:
 fastq-dump -I --split-files SRR13279135
 ```
 
 **Note:** Be mindful of module versions available on your cluster.
-If you receive an Error Code 3, then the SRA file rather large you will need to use `prefetch` and `fasterq-dump`.
+If you receive an Error Code 3, then the SRA file is rather large you will need to use `prefetch` and `fasterq-dump`.
 See the example below.
 
 ```         
@@ -154,5 +154,5 @@ fasterq-dump SRR21639343 --split-files
 
 ```         
 - max-size: prefetch has a 20 GB maximum, so the limit will need to be manually increased for accession requests larger than 20 GB
-- split-flies: sra files for the gfalcon were to big so I had to use prefetch. This required some configuration and then the sbatch file.
+- split-flies: sra files for the gfalcon were too big so I had to use prefetch. This required some configuration and then the sbatch file.
 ```
