@@ -14,9 +14,9 @@ editor_options:
     wrap: sentence
 ---
 
-High Performance Computing (HPC) platforms generally use a job manager system to ensure equitable access to computing resources for multiple users.
+High-Performance Computing (HPC) platforms generally use a job manager system to ensure equitable access to computing resources for multiple users.
 At Boise State University, the Borah computing cluster runs submitted SBATCH files that use slurm command line.
-In this section, we will breakdown slurm scripts and provide an example.
+In this section, we will break down slurm scripts and provide an example.
 
 # Slurm requirements
 
@@ -60,7 +60,7 @@ Slurm scripts have four parts:
 
     `--mail-user`: user email address is provided to receive job events specified above.
 
-3.  **Dependencies** details that software/modules that are required to run the job steps.
+3.  **Dependencies** details the software/modules that are required to run the job steps.
 
     `module load python`
 
@@ -81,7 +81,7 @@ To make comments in a bash script, we use `##`
 #SBATCH -o log.o%j #log file output will be linked to the job number
 #SBATCH -p bsudfq #CPU node request
 #SBATCH -N 1 #One task specified
-#SBATCH -n 14 #14 CPUs specified fort eh task
+#SBATCH -n 14 #14 CPUs specified for the task
 #SBATCH -t 14-00:00:00 #job maximum run time
 #SBATCH --mail-type=END
 #SBATCH --mail-type=BEGIN
@@ -117,7 +117,7 @@ I recommend using [BBedit](https://www.barebones.com/products/bbedit/).
     -   A text editor area will appear in the terminal (Figure 1). Paste a practice slurm script into the screen from your text editor.
     -   You are welcome to use my example job file above, but be sure to insert your email address.
 
-    ![Figure 1. Empty nano screen. Nano is a terminal based text editor.](images/Figure_nano_screen.jpg)
+    ![Figure 1. Empty nano screen. Nano is a terminal-based text editor.](images/Figure_nano_screen.jpg)
 
 6.  When ready to exit the nano screen, hold `CTL+X`.To save press `ENTER` and then `ENTER` again after confirming the name of your file.
 
@@ -125,14 +125,14 @@ I recommend using [BBedit](https://www.barebones.com/products/bbedit/).
 
     -   You have successfully submitted your first slurm job file, great job!
 
-    -   If you ran my example above you should receive two emails indicating that your job started and failed.
+    -   If you run my example above you should receive two emails indicating that your job started and failed.
 
         -   This job is expected to fail because module versions might have changed and your directory does not contain the files required to run this job. A log file should appear in your slurm_example directory.
         -   For practice, view the log file using `nano` to see the job error. You can also review the log file using the `less` command.
 
 8.  To check the progress of your job, use the following command: `squeue - u <username>`
 
-    A resulting output will detail parameters of your job from the slurm resource request section, as well as the state of your job and the current job run time.
+    A resulting output will detail the parameters of your job from the slurm resource request section, as well as the state of your job and the current job run time.
 
     Job state codes
 
