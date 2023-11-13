@@ -17,12 +17,12 @@ editor_options:
 **Now we are ready to mine the genome!**
 
 In this section, each step is listed in the order you should proceed.
-Examples of the slurm script dependencies and job steps explanations are provided, but be sure to include the shebang and resource request portions of the slurm file prior to submitting a job.
+Examples of the slurm script dependencies and job steps explanations are provided, but be sure to include the shebang and resource request portions of the slurm file before submitting a job.
 
 Some modules will take longer than others to run.
 Examples of output files are also provided, so you can confirm necessary output files are resulting from each step.
-Confirm each job has completed successfully before moving onto the next.
-It is recommended to review files last edited time and sizing using `ls -lht`.
+Confirm each job has been completed successfully before moving on to the next.
+It is recommended to review the last edited time and sizing of each output file using `ls -lht`.
 
 If a job fails to run or if the file sizes are empty or suspiciously low, review the log file using the `nano` or `less` command and troubleshoot accordingly.
 
@@ -47,7 +47,7 @@ trim_galore --paired --illumina SRR21639343_1.fastq SRR21639343_2.fastq
 ### Dependencies Explanation
 
 ```         
--- paired: identifies that they SRA files are paired end sequencing reads and the files are identified with the _1 and _2 at the end of the respective file names.
+-- paired: identifies that the SRA files are paired-end sequencing reads and the files are identified with the _1 and _2 at the end of the respective file names.
 -- illumina: identifies that illumina sequencing adapters are present and will be trimmed from the reads.
 ```
 
@@ -105,7 +105,7 @@ Three packages of [samtools](http://www.htslib.org/doc/samtools.html) are used t
 
 -   **Samtools sort** is used when further subsetting alignment reads by reads aligning by one particular contig or chromosome versus another.
 
--   **Samtools index** assists in downstream sub setting and calculating expression of the genes of interest.
+-   **Samtools index** assists in downstream sub-setting and calculating expression of the genes of interest.
 
 ## Slurm script example
 
@@ -129,8 +129,8 @@ samtools index -b ${samtools}/bFalPer1.pri_align_sorted.bam
 ```         
 - b: adjust output format
 - @: number of processors
-- q: subsetting based on quality of alignmnet (40 is high quality map from read to genome)
-- f: reads to include (3: both ends of paired end reads to map and on same scaffold)
+- q: subsetting based on the quality of alignment (40 is a high-quality map from reads to the genome)
+- f: reads to include (3: both ends of paired-end reads to map and on the same scaffold)
 - F: reads to exclude (256: not primary alignment - only keep primary alignment)
 - output: bam file (binary alignment file required for Geneious)
 ```
@@ -158,7 +158,7 @@ In this section, we will complete steps:
     Completed using `tblastn`.
 
 3.  Use the subsetted aligned reads from samtools with the database of matches identified from step 2 to identify which contigs of the reference genome of the model organism have the functional genes of interest.
-    For this step we will run the processing in parallel using `rb-parrell`, which requires bioconda.
+    For this step, we will run the processing in parallel using `rb-parrell`, which requires bioconda.
 
 ## BLAST slurm script example
 
@@ -191,17 +191,17 @@ cat ${data}/Pfalcon_TLR_contig.txt | parallel "samtools view -bh ${bam}/bFalPer1
 Step 1: makeblastdb
 - in: reference genome of non-model species
 - dbtype: nucleic acid (nucl) or protein (prot) sequences specified
-- out: user determined file name for the output database created
+- out: user-determined file name for the output database created
 
 Step 2: tblastn
 - db: database created from the makeblastdb job
 - query: functional genes identified from the KEGG database
-- out: user determined file name for the output
-- outfmt 6: blast iudentified output format 6. User has option to make their own format
+- out: user-determined file name for the output
+- outfmt 6: blast identified output format 6. User has the option to make their own format
 - num_threads: dependent upon computing capacity, but providing a value can speed up the module running process
-- evalue: specifies the number of hits of similar quality. Lower evalue means less hits but higher score. Higher evalue means more hits, but lower score.
+- evalue: specifies the number of hits of similar quality. Lower evalue means fewer hits but a higher score. Higher evalue means more hits, but a lower score.
 
-Step 3: In this step, rbparallel is used to run processes simultaneoulsy in efforts to search for the tblasn hits of TLR fasta sequences in the aligned sam files in each contig of the genome that has been identified to have a hit.
+Step 3: In this step, rbparallel is used to run processes simultaneously in efforts to search for the tblasn hits of TLR fasta sequences in the aligned sam files in each contig of the genome that has been identified to have a hit.
 ```
 
 #### Output Files
@@ -211,22 +211,22 @@ Output names were identified in the slurm file, but a general list is detailed b
 
 -   A set of nine **\_genomeDB** files with multiple file formats will be created.
 
--   **blastn.out** file contains blast output results in a tad-delinated organization. These results should align with a manual tblastn search on the NCBI database.
+-   **blastn.out** file contains blast output results in a tad-delineated organization. These results should align with a manual tblastn search on the NCBI database.
     *This file will be needed for the manual annotation process in Geneious.*
 
 -   **contig.txt** file contains a list of contigs that have been identified to have the functional genes of interest present.
     *This file will be needed for the manual annotation process in Geneious.*
 
 -   A set of **.bam** files will be present.
-    The number of **.bam** files will vary, but should align with the number of contigs identified in the **contig.txt** file.
+    The number of **.bam** files will vary but should align with the number of contigs identified in the **contig.txt** file.
     *These files will be needed for the manual annotation process in Geneious.*
 
 # Subsetting
 
-In the BLAST step, a set of **.bam** files were created for each contig that has been identified to contain the functional genes of interest.
+In the BLAST step, a set of **.bam** files was created for each contig that has been identified to contain the functional genes of interest.
 Once ready, these files will be exported to the desktop and imported into Geneious.
 
-Some of these files are can be incredibly large and if the home computer has limited storage and ram, subsetting the files can be helpful for saving space and computational power.
+Some of these files can be incredibly large and if the home computer has limited storage and ram, subsetting the files can help save space and computational power.
 Review file sizes using `ls -lht` in the blast directory to determine which files need to be subset.
 
 Samtools view will be used for subsetting and in this example, the goal file size of 250 mb.
@@ -257,7 +257,7 @@ samtools view -s 0.50 -b NC_051190.1.bam > NC_051190.1_0.050_subset.bam
 
 #### Output Files
 
-A single subset.bam file should be created depending on the user determined output name.
+A single subset.bam file should be created depending on the user-determined output name.
 Use `ls -lht` to confirm goal file size was met.
 
 # Stringtie
