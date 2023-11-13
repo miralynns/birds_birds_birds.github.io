@@ -26,25 +26,25 @@ editor_options:
 
 For this research workflow example, we selected toll-like receptors (TLR) as the functional genes of interest.
 
-A model organism is an organism that is well-studied in the scientific community with the aim to provide scientific insights for organisms that are not as well studied.
+A model organism is an organism that is well-studied in the scientific community to provide scientific insights for organisms that are not as well-studied.
 
 For this project, we selected the *Taeniopygia guttata* (Zebra Finch).
 You can learn more about Zebra Finch as a model organism here: [[\@hauber2021](https://doi.org/10.7554/eLife.61849 "The Natural History of Model Organisms: Neurogenomic insights into the behavioral and vocal development of the zebra finch")]
 
-# Find functional gene amino acids sequences
+# Find functional gene amino acid sequences
 
 1.  Navigate to the [KEGG Database](https://www.genome.jp/kegg/)
 
     1.  KEGG is a database of a collection of genes and genomic resources. For more information, or to download, visit [KEGG](https://www.genome.jp/kegg/).
 
-2.  One the Homepage, there is a table, select `KEGG organisms` (Figure 1)
+2.  On the Homepage, there is a table, select `KEGG organisms` (Figure 1)
 
-    ![Figure 1. Top portion of KEGG database homepage as of August 2023. Black arrow points to selection for Step 2.](images/KEGG_homepage.jpg){width="641"}
+    ![Figure 1. The top portion of KEGG database homepage as of August 2023. Black arrow points to selection for Step 2.](images/KEGG_homepage.jpg){width="641"}
 
 3.  Search for the organism of interest: *Taeniopygia guttata.* If the organism is in the KEGG database, a taxonomy tree will appear on the right side of the screen, and the organism can be selected (Figure 2).
     Select `tgu`
 
-    ![Figure 2. KEGG organism of taxonomic ranks page as of August 2023. Organism search input area is on the right side of the page. The resulting taxonomy ranks from the search populates on the right side, and the organism of interest can be selected from the table.](images/KEGG_organism_search-01.jpg)
+    ![Figure 2. KEGG organism of taxonomic ranks page as of August 2023. The organism search input area is on the right side of the page. The resulting taxonomy ranks from the search populates on the right side, and the organism of interest can be selected from the table.](images/KEGG_organism_search-01.jpg)
 
 4.  Search for the genes of interest: toll-like receptor (Figure 3).
 
@@ -61,15 +61,15 @@ To mine the genome of our selected research organisms for toll-like receptors, w
 
 FASTA format is commonly used in bioinformatic processes when detailing nucleotide or protein sequences.
 
-FASTA files generally start with a left facing bracket `>` followed by the sequence name or some sort of description.On the next line the sequence is listed.There is a line of space between each sequence and the following sequence ID (Figure 5).
+FASTA files generally start with a left-facing bracket `>` followed by the sequence name or some sort of description. In the next line, the sequence is listed. There is a line of space between each sequence and the following sequence ID (Figure 5).
 
-For this part, you will need a text editor. I recommended TextEdit app for MacOS or Notepad app for Windows.
+For this part, you will need a text editor. I recommended the TextEdit app for MacOS or the Notepad app for Windows.
 
 1.  Click on the first entry from the GenomeNet page in Step 5 of Part 2.
 
 2.  Open a text editor and input the TLR information for each hit (Figure 5).
 
-    1.  Type a left facing bracket `>` and immediately following the \> start inputting the TLR entry details.
+    1.  Type a left-facing bracket `>` and immediately following the \> start inputting the TLR entry details.
 
         1.  Example: \>tgu:100216357 K10160 toll-like receptor 4 \| (RefSeq) TLR4; toll-like receptor 4 precursor (A)
 
@@ -99,8 +99,8 @@ For this part, you will need a text editor. I recommended TextEdit app for MacOS
 
                 ![Figure 5. Example of text editor layout for amino acid sequences of toll-like receptors of the Zebra Finch. Data collected from KEGG database.](images/FIGURE_FASTA_example.jpg)
 
-3.  Save your text file and convert to a fasta.
+3.  Save your text file and convert it to a fasta.
 
-    -   OS: In finder right click on the file and select 'Get Info'. Under Name & Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ' Use .fasta'
+    -   OS: In finder click on the file and select 'Get Info'. Under Name & Extension, replace txt with fasta. A popup will ask if you want to change the extension. Select ' Use .fasta'
 
 We will transfer this FASTA file to the cluster in the next step.
