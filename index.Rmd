@@ -35,6 +35,8 @@ library(tufte)
 knitr::write_bib(.packages(), file = 'packages.bib')
 ```
 
+![](images/birds_birds_birds-01.png)
+
 # Vision Statement
 
 This genome annotation workflow was created by Idaho EPSCoR [GEM3](https://www.idahogem3.org) participants.
@@ -64,13 +66,15 @@ Use the upper navigation tabs in the following order:
     -   Review a quick breakdown of slurm command line for submission of SBATCH files.
 
     -   If your HPC uses a different job managing system, review alternative criteria specific to your institution.
-2. HPC Cluster Workspace
+
+2.  HPC Cluster Workspace
 
     1.  Learn or refresh your command line basics with a tutorial.
 
     2.  Organize your cluster work space.
 
     3.  Confirm required mining modules are available on your institution's HPC.
+
 3.  Identify functional genes of interest in model species
 
     -   Select a model organism that closely relates to your non-model species.
@@ -95,13 +99,18 @@ Use the upper navigation tabs in the following order:
 
 # Acknowledgements
 
-This project was funded with support from National Science Foundation grant No. OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.
+This project was funded with support from National Science Foundation grant No.
+OIA-1757324: RII Track-1: Linking Genome to Phenome to Predict Adaptive Responses of Organisms to Changing Landscapes.
 
 Mentorship was kindly provided by Stephanie Galla, with support from the Conservation Genetics Laboratory at Boise State University.
 
-Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution led by Matthew Holding. The collaborative project was funded with support from the National Science Foundation grant No. OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.
+Workflow development was adapted from a collaborative genomics effort to understand CYP450 gene evolution led by Matthew Holding.
+The collaborative project was funded with support from the National Science Foundation grant No.
+OIA-1826801: RII Track-2 FEC: Genomics Underlying Toxin Tolerance (GUTT): Identifying Molecular Innovations that Predict Phenotypes of Toxin Tolerance in Wild Vertebrate Herbivores.
 
-Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker, and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.
+Access to Geneious software for the project described was supported by an Institutional Development Award (IDeA) from the National Institute of General Medical Sciences of the National Institutes of Health under Grant #P20GM103408.
+
+Many thanks to Jenn Foreby, Denise Pfiefer, Tami Noble, Stephanie Sevigny, Rick Shumaker, Elise Conner and the GEM3 collaborators for continued efforts to support undergraduate research experiences at Primary Undergraduate Institutions.
 
 # Licensing
 
