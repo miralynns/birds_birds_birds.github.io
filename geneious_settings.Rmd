@@ -36,7 +36,7 @@ BAM files from the BLAST step of the cluster process.
 
 Blast *gtf file
 
-This gtf file is created from the blastn.out file. Follow the instructions on this workbook to create the .gft file.
+This gtf file is created from the blastn.out file. Follow the instructions in this workbook to create the .gft file.
 
 StringTie *.gft file
 
@@ -46,7 +46,7 @@ Once you have gathered the required files for Geneious you are ready to create a
 
 Right-click 'Local" select the 'New Folder' option, and name your folder based on the research project.
 
-Importing files into Geneious requires some additional steps, files should be imported in your project folder in the proper order, as detailed in the steps below:
+Importing files into Geneious requires some additional steps, files should be imported into your project folder in the proper order, as detailed in the steps below:
 
 Drag your genome *fna file into the 'Drop files here to import' area of Geneious.
 
@@ -76,13 +76,13 @@ Select all files and drop in the blastHIT .gtf file.
 
 Geneious Settings
 
-In this section, we will select settings used for visualization; however, there are many settings an options while working with annotations in Geneious. Review the Geneious User Manual to determine additional preferred settings for your project.
+In this section, we will select settings used for visualization; however, there are many settings and options while working with annotations in Geneious. Review the Geneious User Manual to determine additional preferred settings for your project.
 
 To start, select a single contig file from the document table. A contig view will appear in the Document Viewer area and to the right of the viewer is a settings panel (Figure 1). Note the six different icons on the right side. We will work through adjusting default settings for most options. Do not change default settings unless indicated in the process below:
 
 General: Select Complement and translation
 
-Display: Unclick Concensus at the top. In the Translation area, set the Translation on Consensus & Reference. Set the Translation Options Relative to Reference.
+Display: Unclick Consensus at the top. In the Translation area, set the Translation on Consensus & Reference. Set the Translation Options Relative to Reference.
 
 Graphs: Ensure Show Graphs and the Log Scale option under Coverage are selected.
 
