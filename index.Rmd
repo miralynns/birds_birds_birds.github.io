@@ -35,7 +35,7 @@ library(tufte)
 knitr::write_bib(.packages(), file = 'packages.bib')
 ```
 
-![](images/birds_birds_birds.png)
+![](images/birds_birds_birds-01.png)
 
 # Vision Statement
 
