@@ -35,7 +35,9 @@ library(tufte)
 knitr::write_bib(.packages(), file = 'packages.bib')
 ```
 
-![](images/birds_birds_birds-01.png)
+```{r repo, echo=FALSE, fig.align = 'center', out.width = '100%'}
+knitr::include_graphics("Images/birds_birds_birds-01.png")
+```
 
 # Vision Statement
 
