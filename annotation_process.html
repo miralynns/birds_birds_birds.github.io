@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Manual Annotation</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Manual Annotation of Functional Genes in Non-Model Species</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="slurm_basics.html">1. Slurm Basics</a>
+</li>
+<li>
+  <a href="HPC_organization.html">2. HPC Workspace</a>
+</li>
+<li>
+  <a href="Kegg_fasta.html">3. Identify Functional Genes</a>
+</li>
+<li>
+  <a href="Data_Download.html">4. Transfer Data to the Cluster</a>
+</li>
+<li>
+  <a href="genome_mining.html">5. Mine the Genome using the UNIX shell</a>
+</li>
+<li>
+  <a href="geneious_settings.html">6. Geneious Project Preparation</a>
+</li>
+<li>
+  <a href="geneious_annoataion.html">7. Manual Annotation</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Manual Annotation</h1>
+
+</div>
+
+
+<p>In this section, I provide general instructions for how to manually annotate in Geneious.
+Every dataset is different, so please be mindful that what might work for this tutorial, might not be perfectly applicable to your project.
+As sequencing coverage is improving, gene prediction models are more accurate.
+This manual process can provide you with a better of protein synthesis.</p>
+<div id="identify-exons-from-blast-hits" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Identify Exons from BLAST hits</h1>
+<p>The Blast file track was creating by mapping the amino acid sequences of the model organisms against the genome of the non-model organism for the functional genes of interest.
+This is the best way to find matching coding sequences (CDS) for the genes to complete the manual annotation process.
+Once you have properly adjusted the setting for a contig file settings, scan across the blast track until you see hits (Figure 1, small gray arrows).
+Depending on the functional gene of interest, these hits could be a singular CDS or an array.</p>
+<div class="figure">
+<img src="Images/Identifying_hits.png" alt="" />
+<p class="caption">Figure 1. Geneious screen displaying annotation tracks (left) and AAblast hits (identified by the black arrows).</p>
+</div>
+</div>
+<div id="zoom-in-on-a-blast-exon" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Zoom in on a BLAST exon</h1>
+<p>Once you have identified an exon on the BLAST track, click or highlight around the exon an zoom in using the magnification options on the top of the Annotation and Tracks panel.</p>
+<p>In this example (Figure 2), multiple exons are present within the blast hit track.
+That means the mining process flagged different inputs within the NCBI database.
+Note that one of the matches is consistent with the gff genome file, which details genomic features (i.e. gene bodies, exons, introns, promoters, etc.).</p>
+<p>Click on a CDS in the gff track to view detailed information.
+Some important items to note are the gene and product identification.
+For this example, the gff track has identified this as a toll-like receptor 7 (TLR7), which is one of the functional genes of interest.
+Also note, that the automatic translation is provided, we will use these to perform a tblastn search when we have finish manually annotating the coding sequence.</p>
+<div class="figure">
+<img src="Images/Zoom_in.png" alt="" />
+<p class="caption">Figure 2. Magnified view of annotations. A single CDS is selected and CDS details from the genome files are displayed.</p>
+</div>
+</div>
+<div id="create-annotation-tracks" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Create Annotation Tracks</h1>
+<p>Now that you we have identified a potential functional gene of interest, we want to create our own annotation tracks to ensure genes are complete.
+You can create these from the gff CDS of blast hit exon.
+I usually select the option that is more promising.
+Because the gff file seems accurate, I will use this to create my CDS annotations.</p>
+<p>Right click on a CDS and select the ‘add annotation’ option.
+A pop-up box will appear (Figure 3).
+First we want to create a CDS.
+You will want to create a consistent naming system for this entire annotation process.
+Names can be edited at anytime.</p>
+<div class="figure">
+<img src="Images/AddingCDSAnnotation.png" alt="" />
+<p class="caption">Figure 3. Pop-up box view when creating an annotation track.</p>
+</div>
+<p>Once you have name the CDS, Click the ‘Type’ (Figure 3A) drop down option and select CDS.
+Identify the CDS direction (Figure 3B).
+If the exon is pointing left it is in a reverse direction.
+If it is pointing right, it is in a forward direction.
+For CDS annotation tracks that have multiple exons, we want them to be linked to the translation spans across each exon.
+Do not select the ‘Create separate annotation for each interval’ option (Figure 3C).
+A CDS will appear between the Coverage bar and genome file track (Figure 4).</p>
+<div class="figure">
+<img src="Images/CDS_view.png" alt="" />
+<p class="caption">Figure 4. Manually added coding sequence.</p>
+</div>
+</div>
+<div id="manually-annotate-the-coding-sequences" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Manually Annotate the Coding Sequences</h1>
+<p>Now that you have created a CDS of the gene, we want to confirm that it accurately covers the gene sequences.
+We will do this using both the nucleotide and amino acids tracks in Geneious.
+First, lets review some specifics of gene features.</p>
+<p>During the translation process, the ribosome scans across the mRNA until the start codon is identified, Methionine (M).
+All coding sequences should start with M (Figure 4A).
+At the end of the coding sequences, there is a stop codon present.
+Geneious visualizes stop codons as a box with an asterisk (Figure 4B).</p>
+<p>When annotating genes that have multiple CDS, each individual CDS within the gene body in the forward direction should start after an AG nucleotide combination (Figure 4A) and stop before a GT nucleotide combination (Figure 4C).</p>
+<p>If the function gene of interest is a single CDS, the annotation process is a bit simpler.
+You confirm the start (M) and stop (*) placements, without needing to address the AG/GT rule.
+If there are multiple CDS, then the reading frame may change between each CDS.</p>
+<p>Following these ‘rules’ you can adjust the CDS position until you have a continuous amino acid sequence for the gene.
+If the CDS is not continuous, Geneious will display an asterisk on the CDS or you can see the amino acid sequence in the information area (Figure 2).</p>
+</div>
+<div id="exporting-annotations" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Exporting Annotations</h1>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
