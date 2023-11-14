@@ -1,0 +1,91 @@
+---
+title: "Manual Annotation"
+output:
+#  bookdown::pdf_document2:
+#    toc: TRUE
+  bookdown::html_document2: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: cosmo
+link-citations: yes
+fontsize: 12pt
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+In this section, I provide general instructions for how to manually annotate in Geneious.
+Every dataset is different, so please be mindful that what might work for this tutorial, might not be perfectly applicable to your project.
+As sequencing coverage is improving, gene prediction models are more accurate.
+This manual process can provide you with a better of protein synthesis.
+
+# Identify Exons from BLAST hits
+
+The Blast file track was creating by mapping the amino acid sequences of the model organisms against the genome of the non-model organism for the functional genes of interest.
+This is the best way to find matching coding sequences (CDS) for the genes to complete the manual annotation process.
+Once you have properly adjusted the setting for a contig file settings, scan across the blast track until you see hits (Figure 1, small gray arrows).
+Depending on the functional gene of interest, these hits could be a singular CDS or an array.
+
+![Figure 1. Geneious screen displaying annotation tracks (left) and AAblast hits (identified by the black arrows).](images/Identifying_hits.png)
+
+# Zoom in on a BLAST exon
+
+Once you have identified an exon on the BLAST track, click or highlight around the exon an zoom in using the magnification options on the top of the Annotation and Tracks panel.
+
+In this example (Figure 2), multiple exons are present within the blast hit track.
+That means the mining process flagged different inputs within the NCBI database.
+Note that one of the matches is consistent with the gff genome file, which details genomic features (i.e. gene bodies, exons, introns, promoters, etc.).
+
+Click on a CDS in the gff track to view detailed information.
+Some important items to note are the gene and product identification.
+For this example, the gff track has identified this as a toll-like receptor 7 (TLR7), which is one of the functional genes of interest.
+Also note, that the automatic translation is provided, we will use these to perform a tblastn search when we have finish manually annotating the coding sequence.
+
+![Figure 2. Magnified view of annotations. A single CDS is selected and CDS details from the genome files are displayed.](images/Zoom_in.png)
+
+# Create Annotation Tracks
+
+Now that you we have identified a potential functional gene of interest, we want to create our own annotation tracks to ensure genes are complete.
+You can create these from the gff CDS of blast hit exon.
+I usually select the option that is more promising.
+Because the gff file seems accurate, I will use this to create my CDS annotations.
+
+Right click on a CDS and select the 'add annotation' option.
+A pop-up box will appear (Figure 3).
+First we want to create a CDS.
+You will want to create a consistent naming system for this entire annotation process.
+Names can be edited at anytime.
+
+![Figure 3. Pop-up box view when creating an annotation track.](images/AddingCDSAnnotation.png)
+
+Once you have name the CDS, Click the 'Type' (Figure 3A) drop down option and select CDS.
+Identify the CDS direction (Figure 3B).
+If the exon is pointing left it is in a reverse direction.
+If it is pointing right, it is in a forward direction.
+For CDS annotation tracks that have multiple exons, we want them to be linked to the translation spans across each exon.
+Do not select the 'Create separate annotation for each interval' option (Figure 3C).
+A CDS will appear between the Coverage bar and genome file track (Figure 4).
+
+![Figure 4. Manually added coding sequence.](images/CDS_view.png)
+
+# Manually Annotate the Coding Sequences
+
+Now that you have created a CDS of the gene, we want to confirm that it accurately covers the gene sequences.
+We will do this using both the nucleotide and amino acids tracks in Geneious.
+First, lets review some specifics of gene features.
+
+During the translation process, the ribosome scans across the mRNA until the start codon is identified, Methionine (M).
+All coding sequences should start with M (Figure 4A).
+At the end of the coding sequences, there is a stop codon present.
+Geneious visualizes stop codons as a box with an asterisk (Figure 4B).
+
+When annotating genes that have multiple CDS, each individual CDS within the gene body in the forward direction should start after an AG nucleotide combination (Figure 4A) and stop before a GT nucleotide combination (Figure 4C).
+
+If the function gene of interest is a single CDS, the annotation process is a bit simpler.
+You confirm the start (M) and stop (\*) placements, without needing to address the AG/GT rule.
+If there are multiple CDS, then the reading frame may change between each CDS.
+
+Following these 'rules' you can adjust the CDS position until you have a continuous amino acid sequence for the gene.
+If the CDS is not continuous, Geneious will display an asterisk on the CDS or you can see the amino acid sequence in the information area (Figure 2).
+
+# Exporting Annotations
